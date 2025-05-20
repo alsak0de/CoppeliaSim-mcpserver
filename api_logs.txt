@@ -1,0 +1,1102 @@
+2025-05-14 19:26:09,494 - Error: 1207: in sim._getObjectHandle: object does not exist, or alias/path is ill formatted._=NL=__=NL=_Since CoppeliaSim V4.3.0, objects should be retrieved via a path and alias, e.g. "./path/to/alias", ":/path/to/alias", "/path/to/alias", etc._=NL=_You however tried to access an object in a way that doesn't follow the new notation, i.e. "joint" wasn't found._=NL=_Note also that object aliases are distinct from object names, which are deprecated and not displayed anymore. Additionally, sim.getObject is preferred over sim.getObjectHandle._=NL=_Make sure to read the following page for additional details: https://manual.coppeliarobotics.com/en/accessingSceneObjects.htm
+2025-05-14 19:28:14,762 - Error: 1189: in sim._getObject: object does not exist, or alias/path is ill formatted.
+2025-05-14 19:30:54,892 - Error: 1189: in sim._getObject: object does not exist, or alias/path is ill formatted.
+2025-05-14 19:33:38,339 - Error: 356: in sim.getObjects: the function requires more arguments.
+2025-05-14 19:34:50,936 - Request: sim.getObjects(sim.object_joint_type, -1)
+2025-05-14 19:34:50,936 - Response: -1
+2025-05-14 19:34:50,936 - Error: 'int' object is not iterable
+2025-05-14 19:36:35,398 - Request: sim.getObjects(sim.object_joint_type, -1)
+2025-05-14 19:36:35,399 - Response: -1
+2025-05-14 19:36:35,399 - Failed to retrieve joint handles. Check object type and scene setup.
+2025-05-14 19:36:35,399 - Request: sim.getObjectsInTree(sim.handle_scene)
+2025-05-14 19:36:35,399 - Response: [0, 1, 8, 9, 10, 11, 12, 15, 36, 37, 38, 39, 40, 41, 42, 43, 44, 2, 3, 4, 5, 6, 7, 13, 16, 35, 14, 17, 18, 34, 19, 20, 33, 21, 22, 31, 23, 32, 24, 30, 25, 26, 29, 27, 28]
+2025-05-14 19:36:35,400 - Request: sim.getObjectAlias(0)
+2025-05-14 19:36:35,400 - Response: DefaultCamera
+2025-05-14 19:36:35,400 - Request: sim.getObjectType(0)
+2025-05-14 19:36:35,400 - Response: 3
+2025-05-14 19:36:35,404 - Request: sim.getObjectPosition(0, -1)
+2025-05-14 19:36:35,404 - Response: [0.21809873432387392, 0.8771374246099425, 0.05752957013441202]
+2025-05-14 19:36:35,404 - Request: sim.getObjectOrientation(0, -1)
+2025-05-14 19:36:35,404 - Response: [1.5796127799948325, -0.1113786253536355, 0.0009799605300741636]
+2025-05-14 19:36:35,405 - Request: sim.getObjectAlias(1)
+2025-05-14 19:36:35,405 - Response: XYZCameraProxy
+2025-05-14 19:36:35,405 - Request: sim.getObjectType(1)
+2025-05-14 19:36:35,405 - Response: 4
+2025-05-14 19:36:35,405 - Request: sim.getObjectPosition(1, -1)
+2025-05-14 19:36:35,405 - Response: [0.0, 0.0, 0.75]
+2025-05-14 19:36:35,409 - Request: sim.getObjectOrientation(1, -1)
+2025-05-14 19:36:35,409 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:36:35,409 - Request: sim.getObjectAlias(8)
+2025-05-14 19:36:35,409 - Response: DefaultLightA
+2025-05-14 19:36:35,410 - Request: sim.getObjectType(8)
+2025-05-14 19:36:35,410 - Response: 13
+2025-05-14 19:36:35,410 - Request: sim.getObjectPosition(8, -1)
+2025-05-14 19:36:35,410 - Response: [2.68465256690979, 0.4237121045589447, 4.199692249298096]
+2025-05-14 19:36:35,414 - Request: sim.getObjectOrientation(8, -1)
+2025-05-14 19:36:35,414 - Response: [-2.1416442782871763, -1.1082667368981514, 2.2797642115075383]
+2025-05-14 19:36:35,414 - Request: sim.getObjectAlias(9)
+2025-05-14 19:36:35,414 - Response: DefaultLightB
+2025-05-14 19:36:35,414 - Request: sim.getObjectType(9)
+2025-05-14 19:36:35,414 - Response: 13
+2025-05-14 19:36:35,415 - Request: sim.getObjectPosition(9, -1)
+2025-05-14 19:36:35,415 - Response: [2.5355722904205322, 0.7009791135787964, 4.256357192993164]
+2025-05-14 19:36:35,415 - Request: sim.getObjectOrientation(9, -1)
+2025-05-14 19:36:35,415 - Response: [1.794642938017238, 0.0331017996569377, 0.3457228933866296]
+2025-05-14 19:36:35,415 - Request: sim.getObjectAlias(10)
+2025-05-14 19:36:35,415 - Response: DefaultLightC
+2025-05-14 19:36:35,419 - Request: sim.getObjectType(10)
+2025-05-14 19:36:35,419 - Response: 13
+2025-05-14 19:36:35,420 - Request: sim.getObjectPosition(10, -1)
+2025-05-14 19:36:35,420 - Response: [2.4438271522521973, 0.40221044421195984, 4.347628593444824]
+2025-05-14 19:36:35,420 - Request: sim.getObjectOrientation(10, -1)
+2025-05-14 19:36:35,420 - Response: [-1.8632107077957811, 0.9203441813318705, -2.535470712079397]
+2025-05-14 19:36:35,420 - Request: sim.getObjectAlias(11)
+2025-05-14 19:36:35,420 - Response: DefaultLightD
+2025-05-14 19:36:35,420 - Request: sim.getObjectType(11)
+2025-05-14 19:36:35,420 - Response: 13
+2025-05-14 19:36:35,421 - Request: sim.getObjectPosition(11, -1)
+2025-05-14 19:36:35,421 - Response: [2.4438271522521973, 0.40221044421195984, 4.347628593444824]
+2025-05-14 19:36:35,421 - Request: sim.getObjectOrientation(11, -1)
+2025-05-14 19:36:35,421 - Response: [-3.1415925025939906, 1.7491140225344223e-46, -3.7346066782686496e-32]
+2025-05-14 19:36:35,421 - Request: sim.getObjectAlias(12)
+2025-05-14 19:36:35,421 - Response: ResizableFloor_5_25
+2025-05-14 19:36:35,425 - Request: sim.getObjectType(12)
+2025-05-14 19:36:35,425 - Response: 4
+2025-05-14 19:36:35,425 - Request: sim.getObjectPosition(12, -1)
+2025-05-14 19:36:35,425 - Response: [0.0, 0.0, 0.0]
+2025-05-14 19:36:35,425 - Request: sim.getObjectOrientation(12, -1)
+2025-05-14 19:36:35,425 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:36:35,426 - Request: sim.getObjectAlias(15)
+2025-05-14 19:36:35,426 - Response: base_link_respondable
+2025-05-14 19:36:35,426 - Request: sim.getObjectType(15)
+2025-05-14 19:36:35,426 - Response: 0
+2025-05-14 19:36:35,430 - Request: sim.getObjectPosition(15, -1)
+2025-05-14 19:36:35,430 - Response: [-0.05000000074505806, 0.0, 0.017017090693116188]
+2025-05-14 19:36:35,431 - Request: sim.getObjectOrientation(15, -1)
+2025-05-14 19:36:35,431 - Response: [-1.5707987950766196, -0.9459679826234474, -1.5707987950766196]
+2025-05-14 19:36:35,431 - Request: sim.getObjectAlias(36)
+2025-05-14 19:36:35,431 - Response: Cuboid
+2025-05-14 19:36:35,431 - Request: sim.getObjectType(36)
+2025-05-14 19:36:35,431 - Response: 0
+2025-05-14 19:36:35,435 - Request: sim.getObjectPosition(36, -1)
+2025-05-14 19:36:35,435 - Response: [0.17499995231628418, -0.02500000037252903, -1010.3518695808755]
+2025-05-14 19:36:35,435 - Request: sim.getObjectOrientation(36, -1)
+2025-05-14 19:36:35,435 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:36:35,436 - Request: sim.getObjectAlias(37)
+2025-05-14 19:36:35,436 - Response: Vision_sensor
+2025-05-14 19:36:35,436 - Request: sim.getObjectType(37)
+2025-05-14 19:36:35,436 - Response: 9
+2025-05-14 19:36:35,436 - Request: sim.getObjectPosition(37, -1)
+2025-05-14 19:36:35,436 - Response: [0.0, 0.0, 0.029999999329447746]
+2025-05-14 19:36:35,436 - Request: sim.getObjectOrientation(37, -1)
+2025-05-14 19:36:35,436 - Response: [0.0, 1.570796326794, 1.5707968036320548]
+2025-05-14 19:36:35,437 - Request: sim.getObjectAlias(38)
+2025-05-14 19:36:35,437 - Response: Cuboid
+2025-05-14 19:36:35,437 - Request: sim.getObjectType(38)
+2025-05-14 19:36:35,437 - Response: 0
+2025-05-14 19:36:35,437 - Request: sim.getObjectPosition(38, -1)
+2025-05-14 19:36:35,437 - Response: [0.17499999701976776, 0.02500000037252903, 0.009999927133321759]
+2025-05-14 19:36:35,444 - Request: sim.getObjectOrientation(38, -1)
+2025-05-14 19:36:35,444 - Response: [-7.09237829742776e-17, 1.0020454424747885e-16, -1.571749730784405e-17]
+2025-05-14 19:36:35,444 - Request: sim.getObjectAlias(39)
+2025-05-14 19:36:35,444 - Response: Cuboid
+2025-05-14 19:36:35,445 - Request: sim.getObjectType(39)
+2025-05-14 19:36:35,445 - Response: 0
+2025-05-14 19:36:35,445 - Request: sim.getObjectPosition(39, -1)
+2025-05-14 19:36:35,445 - Response: [0.17499999701976776, -0.07500000298023224, 0.009999927133321759]
+2025-05-14 19:36:35,445 - Request: sim.getObjectOrientation(39, -1)
+2025-05-14 19:36:35,445 - Response: [-1.1328215281978638e-16, -7.807443961695522e-17, -4.77925231175476e-18]
+2025-05-14 19:36:35,445 - Request: sim.getObjectAlias(40)
+2025-05-14 19:36:35,445 - Response: Cuboid
+2025-05-14 19:36:35,446 - Request: sim.getObjectType(40)
+2025-05-14 19:36:35,446 - Response: 0
+2025-05-14 19:36:35,446 - Request: sim.getObjectPosition(40, -1)
+2025-05-14 19:36:35,446 - Response: [0.17499995231628418, 0.07499998807907104, 0.009999927133321759]
+2025-05-14 19:36:35,446 - Request: sim.getObjectOrientation(40, -1)
+2025-05-14 19:36:35,446 - Response: [6.383118411775867e-17, -4.353086197040449e-17, -3.710519842640374e-18]
+2025-05-14 19:36:35,450 - Request: sim.getObjectAlias(41)
+2025-05-14 19:36:35,450 - Response: Plane
+2025-05-14 19:36:35,450 - Request: sim.getObjectType(41)
+2025-05-14 19:36:35,450 - Response: 0
+2025-05-14 19:36:35,450 - Request: sim.getObjectPosition(41, -1)
+2025-05-14 19:36:35,450 - Response: [-0.10000000149011612, -0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:36:35,451 - Request: sim.getObjectOrientation(41, -1)
+2025-05-14 19:36:35,451 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:36:35,451 - Request: sim.getObjectAlias(42)
+2025-05-14 19:36:35,451 - Response: Plane
+2025-05-14 19:36:35,451 - Request: sim.getObjectType(42)
+2025-05-14 19:36:35,451 - Response: 0
+2025-05-14 19:36:35,451 - Request: sim.getObjectPosition(42, -1)
+2025-05-14 19:36:35,451 - Response: [0.05000000447034836, -0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:36:35,452 - Request: sim.getObjectOrientation(42, -1)
+2025-05-14 19:36:35,452 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:36:35,452 - Request: sim.getObjectAlias(43)
+2025-05-14 19:36:35,452 - Response: Plane
+2025-05-14 19:36:35,456 - Request: sim.getObjectType(43)
+2025-05-14 19:36:35,456 - Response: 0
+2025-05-14 19:36:35,456 - Request: sim.getObjectPosition(43, -1)
+2025-05-14 19:36:35,456 - Response: [-0.09999997913837433, 0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:36:35,457 - Request: sim.getObjectOrientation(43, -1)
+2025-05-14 19:36:35,457 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:36:35,457 - Request: sim.getObjectAlias(44)
+2025-05-14 19:36:35,457 - Response: Plane
+2025-05-14 19:36:35,457 - Request: sim.getObjectType(44)
+2025-05-14 19:36:35,457 - Response: 0
+2025-05-14 19:36:35,457 - Request: sim.getObjectPosition(44, -1)
+2025-05-14 19:36:35,457 - Response: [0.05000000447034836, 0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:36:35,457 - Request: sim.getObjectOrientation(44, -1)
+2025-05-14 19:36:35,458 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:36:35,458 - Request: sim.getObjectAlias(2)
+2025-05-14 19:36:35,458 - Response: DefaultXViewCamera
+2025-05-14 19:36:35,458 - Request: sim.getObjectType(2)
+2025-05-14 19:36:35,458 - Response: 3
+2025-05-14 19:36:35,464 - Request: sim.getObjectPosition(2, -1)
+2025-05-14 19:36:35,464 - Response: [20.0, 0.0, 0.75]
+2025-05-14 19:36:35,464 - Request: sim.getObjectOrientation(2, -1)
+2025-05-14 19:36:35,464 - Response: [0.0, -1.570796326794, -1.5707963267948966]
+2025-05-14 19:36:35,464 - Request: sim.getObjectAlias(3)
+2025-05-14 19:36:35,464 - Response: DefaultYViewCamera
+2025-05-14 19:36:35,464 - Request: sim.getObjectType(3)
+2025-05-14 19:36:35,464 - Response: 3
+2025-05-14 19:36:35,465 - Request: sim.getObjectPosition(3, -1)
+2025-05-14 19:36:35,465 - Response: [0.0, 20.0, 0.75]
+2025-05-14 19:36:35,465 - Request: sim.getObjectOrientation(3, -1)
+2025-05-14 19:36:35,465 - Response: [1.5707963267948968, 0.0, -0.0]
+2025-05-14 19:36:35,465 - Request: sim.getObjectAlias(4)
+2025-05-14 19:36:35,465 - Response: DefaultZViewCamera
+2025-05-14 19:36:35,469 - Request: sim.getObjectType(4)
+2025-05-14 19:36:35,469 - Response: 3
+2025-05-14 19:36:35,469 - Request: sim.getObjectPosition(4, -1)
+2025-05-14 19:36:35,469 - Response: [0.0, 0.0, 20.75]
+2025-05-14 19:36:35,470 - Request: sim.getObjectOrientation(4, -1)
+2025-05-14 19:36:35,470 - Response: [-3.1415925661670165, 0.0, -0.0]
+2025-05-14 19:36:35,470 - Request: sim.getObjectAlias(5)
+2025-05-14 19:36:35,470 - Response: DefaultNXViewCamera
+2025-05-14 19:36:35,474 - Request: sim.getObjectType(5)
+2025-05-14 19:36:35,474 - Response: 3
+2025-05-14 19:36:35,475 - Request: sim.getObjectPosition(5, -1)
+2025-05-14 19:36:35,475 - Response: [-20.0, -1.748455588312936e-06, 0.75]
+2025-05-14 19:36:35,475 - Request: sim.getObjectOrientation(5, -1)
+2025-05-14 19:36:35,475 - Response: [0.0, 1.570796207585607, 1.5707963267948966]
+2025-05-14 19:36:35,479 - Request: sim.getObjectAlias(6)
+2025-05-14 19:36:35,479 - Response: DefaultNYViewCamera
+2025-05-14 19:36:35,480 - Request: sim.getObjectType(6)
+2025-05-14 19:36:35,480 - Response: 3
+2025-05-14 19:36:35,480 - Request: sim.getObjectPosition(6, -1)
+2025-05-14 19:36:35,480 - Response: [1.748455588312936e-06, -20.0, 0.75]
+2025-05-14 19:36:35,484 - Request: sim.getObjectOrientation(6, -1)
+2025-05-14 19:36:35,484 - Response: [-1.5707963267948968, -8.742277237227608e-08, -3.141592653589793]
+2025-05-14 19:36:35,485 - Request: sim.getObjectAlias(7)
+2025-05-14 19:36:35,485 - Response: DefaultNZViewCamera
+2025-05-14 19:36:35,485 - Request: sim.getObjectType(7)
+2025-05-14 19:36:35,485 - Response: 3
+2025-05-14 19:36:35,485 - Request: sim.getObjectPosition(7, -1)
+2025-05-14 19:36:35,485 - Response: [1.8140226529794745e-06, 1.5858690229075822e-13, -20.75]
+2025-05-14 19:36:35,485 - Request: sim.getObjectOrientation(7, -1)
+2025-05-14 19:36:35,485 - Response: [8.742278750027412e-08, -8.742276564667658e-08, 8.742278750027412e-08]
+2025-05-14 19:36:35,486 - Request: sim.getObjectAlias(13)
+2025-05-14 19:36:35,486 - Response: ResizableFloor_5_25_element
+2025-05-14 19:36:35,486 - Request: sim.getObjectType(13)
+2025-05-14 19:36:35,486 - Response: 0
+2025-05-14 19:36:35,486 - Request: sim.getObjectPosition(13, -1)
+2025-05-14 19:36:35,486 - Response: [0.0, 0.0, -0.020000072196125984]
+2025-05-14 19:36:35,490 - Request: sim.getObjectOrientation(13, -1)
+2025-05-14 19:36:35,490 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:36:35,490 - Request: sim.getObjectAlias(16)
+2025-05-14 19:36:35,490 - Response: m1
+2025-05-14 19:36:35,490 - Request: sim.getObjectType(16)
+2025-05-14 19:36:35,490 - Response: 1
+2025-05-14 19:36:35,491 - Request: sim.getObjectPosition(16, -1)
+2025-05-14 19:36:35,491 - Response: [-0.016649709529225218, 0.00017796001185420475, 0.03282843307991573]
+2025-05-14 19:36:35,491 - Request: sim.getObjectOrientation(16, -1)
+2025-05-14 19:36:35,491 - Response: [-0.0017370927413322857, 0.001955391777462219, 1.5707964331143407]
+2025-05-14 19:36:35,495 - Request: sim.getObjectAlias(35)
+2025-05-14 19:36:35,495 - Response: base_link_visual
+2025-05-14 19:36:35,495 - Request: sim.getObjectType(35)
+2025-05-14 19:36:35,495 - Response: 0
+2025-05-14 19:36:35,495 - Request: sim.getObjectPosition(35, -1)
+2025-05-14 19:36:35,495 - Response: [-0.0545617943651326, -2.072852656892142e-06, 0.01718189095038106]
+2025-05-14 19:36:35,495 - Request: sim.getObjectOrientation(35, -1)
+2025-05-14 19:36:35,495 - Response: [0.0, -1.568674160812035, 0.0017372539688747968]
+2025-05-14 19:36:35,496 - Request: sim.getObjectAlias(14)
+2025-05-14 19:36:35,496 - Response: ResizableFloor_5_25_visibleElement
+2025-05-14 19:36:35,496 - Request: sim.getObjectType(14)
+2025-05-14 19:36:35,496 - Response: 0
+2025-05-14 19:36:35,496 - Request: sim.getObjectPosition(14, -1)
+2025-05-14 19:36:35,496 - Response: [0.0, 0.0, 3.5390257835388184e-08]
+2025-05-14 19:36:35,496 - Request: sim.getObjectOrientation(14, -1)
+2025-05-14 19:36:35,496 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:36:35,497 - Request: sim.getObjectAlias(17)
+2025-05-14 19:36:35,497 - Response: long_U_respondable
+2025-05-14 19:36:35,497 - Request: sim.getObjectType(17)
+2025-05-14 19:36:35,497 - Response: 0
+2025-05-14 19:36:35,497 - Request: sim.getObjectPosition(17, -1)
+2025-05-14 19:36:35,497 - Response: [-0.017409820324222277, 0.00018037361215703356, 0.04966461266320018]
+2025-05-14 19:36:35,503 - Request: sim.getObjectOrientation(17, -1)
+2025-05-14 19:36:35,503 - Response: [-1.5719725676771341, -0.019876301632538604, 3.0991258131728086]
+2025-05-14 19:36:35,504 - Request: sim.getObjectAlias(18)
+2025-05-14 19:36:35,504 - Response: m2
+2025-05-14 19:36:35,504 - Request: sim.getObjectType(18)
+2025-05-14 19:36:35,504 - Response: 1
+2025-05-14 19:36:35,504 - Request: sim.getObjectPosition(18, -1)
+2025-05-14 19:36:35,504 - Response: [-0.017723601139214208, 0.00018246229331364048, 0.056743354213091755]
+2025-05-14 19:36:35,504 - Request: sim.getObjectOrientation(18, -1)
+2025-05-14 19:36:35,504 - Response: [-1.5719726246885446, -0.019876239532541955, 3.098472127923734]
+2025-05-14 19:36:35,505 - Request: sim.getObjectAlias(34)
+2025-05-14 19:36:35,505 - Response: long_U_visual
+2025-05-14 19:36:35,505 - Request: sim.getObjectType(34)
+2025-05-14 19:36:35,505 - Response: 0
+2025-05-14 19:36:35,505 - Request: sim.getObjectPosition(34, -1)
+2025-05-14 19:36:35,505 - Response: [-0.017418701521212936, 0.00018020184756148224, 0.049668679963387176]
+2025-05-14 19:36:35,505 - Request: sim.getObjectOrientation(34, -1)
+2025-05-14 19:36:35,505 - Response: [1.5696201732738717, 0.01987630534399176, -3.098435980480835]
+2025-05-14 19:36:35,506 - Request: sim.getObjectAlias(19)
+2025-05-14 19:36:35,506 - Response: section_1_respondable
+2025-05-14 19:36:35,506 - Request: sim.getObjectType(19)
+2025-05-14 19:36:35,506 - Response: 0
+2025-05-14 19:36:35,506 - Request: sim.getObjectPosition(19, -1)
+2025-05-14 19:36:35,506 - Response: [-0.03818151596870192, -0.00036387547565309904, 0.07401579505222478]
+2025-05-14 19:36:35,510 - Request: sim.getObjectOrientation(19, -1)
+2025-05-14 19:36:35,510 - Response: [3.1278586267214723, 0.876104440032731, -3.113086428085456]
+2025-05-14 19:36:35,511 - Request: sim.getObjectAlias(20)
+2025-05-14 19:36:35,511 - Response: m3
+2025-05-14 19:36:35,511 - Request: sim.getObjectType(20)
+2025-05-14 19:36:35,511 - Response: 1
+2025-05-14 19:36:35,511 - Request: sim.getObjectPosition(20, -1)
+2025-05-14 19:36:35,511 - Response: [-0.05888030087140634, -0.000386619295907334, 0.09115720301277272]
+2025-05-14 19:36:35,511 - Request: sim.getObjectOrientation(20, -1)
+2025-05-14 19:36:35,511 - Response: [-1.5715378586895246, -0.014721154907733179, 2.2615757350739263]
+2025-05-14 19:36:35,512 - Request: sim.getObjectAlias(33)
+2025-05-14 19:36:35,512 - Response: section_1_visual
+2025-05-14 19:36:35,512 - Request: sim.getObjectType(33)
+2025-05-14 19:36:35,512 - Response: 0
+2025-05-14 19:36:35,512 - Request: sim.getObjectPosition(33, -1)
+2025-05-14 19:36:35,512 - Response: [-0.03843448122973221, -0.00012717983029798008, 0.0742539795915234]
+2025-05-14 19:36:35,512 - Request: sim.getObjectOrientation(33, -1)
+2025-05-14 19:36:35,512 - Response: [0.015485721971741712, -0.8799082014260814, -3.119706645756696]
+2025-05-14 19:36:35,512 - Request: sim.getObjectAlias(21)
+2025-05-14 19:36:35,513 - Response: section_2_respondable
+2025-05-14 19:36:35,513 - Request: sim.getObjectType(21)
+2025-05-14 19:36:35,513 - Response: 0
+2025-05-14 19:36:35,513 - Request: sim.getObjectPosition(21, -1)
+2025-05-14 19:36:35,513 - Response: [-0.06435591322606848, -0.0010882504484106693, 0.10020680695645215]
+2025-05-14 19:36:35,517 - Request: sim.getObjectOrientation(21, -1)
+2025-05-14 19:36:35,517 - Response: [3.09499984384646, 0.5617198557057841, 3.128666887113782]
+2025-05-14 19:36:35,517 - Request: sim.getObjectAlias(22)
+2025-05-14 19:36:35,517 - Response: m4
+2025-05-14 19:36:35,517 - Request: sim.getObjectType(22)
+2025-05-14 19:36:35,517 - Response: 1
+2025-05-14 19:36:35,518 - Request: sim.getObjectPosition(22, -1)
+2025-05-14 19:36:35,518 - Response: [-0.07502473068459353, -0.0006082674049894998, 0.1162392159437959]
+2025-05-14 19:36:35,518 - Request: sim.getObjectOrientation(22, -1)
+2025-05-14 19:36:35,518 - Response: [-3.1327210876676097, 0.5727672933952145, -1.587934746269894]
+2025-05-14 19:36:35,518 - Request: sim.getObjectAlias(31)
+2025-05-14 19:36:35,518 - Response: section_2_visual
+2025-05-14 19:36:35,524 - Request: sim.getObjectType(31)
+2025-05-14 19:36:35,524 - Response: 0
+2025-05-14 19:36:35,524 - Request: sim.getObjectPosition(31, -1)
+2025-05-14 19:36:35,524 - Response: [-0.06456096176684001, -0.0009039521403591806, 0.10000779494977881]
+2025-05-14 19:36:35,524 - Request: sim.getObjectOrientation(31, -1)
+2025-05-14 19:36:35,524 - Response: [-0.003686597363958247, -0.5729123928291562, -3.131261195012738]
+2025-05-14 19:36:35,525 - Request: sim.getObjectAlias(23)
+2025-05-14 19:36:35,525 - Response: section_3_respondable
+2025-05-14 19:36:35,525 - Request: sim.getObjectType(23)
+2025-05-14 19:36:35,525 - Response: 0
+2025-05-14 19:36:35,525 - Request: sim.getObjectPosition(23, -1)
+2025-05-14 19:36:35,525 - Response: [-0.0615801383820226, 0.0014577804823481541, 0.1413314802976779]
+2025-05-14 19:36:35,529 - Request: sim.getObjectOrientation(23, -1)
+2025-05-14 19:36:35,529 - Response: [-3.0489873294065313, -0.992456660827096, -3.074081417871308]
+2025-05-14 19:36:35,529 - Request: sim.getObjectAlias(32)
+2025-05-14 19:36:35,529 - Response: Dummy
+2025-05-14 19:36:35,530 - Request: sim.getObjectType(32)
+2025-05-14 19:36:35,530 - Response: 4
+2025-05-14 19:36:35,530 - Request: sim.getObjectPosition(32, -1)
+2025-05-14 19:36:35,530 - Response: [-0.14587322045451567, -0.0004392617501666475, 0.22605581134864627]
+2025-05-14 19:36:35,530 - Request: sim.getObjectOrientation(32, -1)
+2025-05-14 19:36:35,530 - Response: [0.010980648917094809, -0.574691374816441, 0.018284868519340178]
+2025-05-14 19:36:35,534 - Request: sim.getObjectAlias(24)
+2025-05-14 19:36:35,534 - Response: m5
+2025-05-14 19:36:35,534 - Request: sim.getObjectType(24)
+2025-05-14 19:36:35,534 - Response: 1
+2025-05-14 19:36:35,534 - Request: sim.getObjectPosition(24, -1)
+2025-05-14 19:36:35,534 - Response: [-0.043063255395858015, -4.525203641700523e-05, 0.15506736368402507]
+2025-05-14 19:36:35,535 - Request: sim.getObjectOrientation(24, -1)
+2025-05-14 19:36:35,535 - Response: [1.5695063942804757, 0.016055837740479223, 0.5755069567276424]
+2025-05-14 19:36:35,535 - Request: sim.getObjectAlias(30)
+2025-05-14 19:36:35,535 - Response: section_3_visual
+2025-05-14 19:36:35,535 - Request: sim.getObjectType(30)
+2025-05-14 19:36:35,535 - Response: 0
+2025-05-14 19:36:35,539 - Request: sim.getObjectPosition(30, -1)
+2025-05-14 19:36:35,539 - Response: [-0.06194815761682127, -0.00035350636610679523, 0.14097369087039965]
+2025-05-14 19:36:35,539 - Request: sim.getObjectOrientation(30, -1)
+2025-05-14 19:36:35,539 - Response: [3.115596120488347, -0.9944374743380967, 3.112128266653138]
+2025-05-14 19:36:35,540 - Request: sim.getObjectAlias(25)
+2025-05-14 19:36:35,540 - Response: holder_section_respondable
+2025-05-14 19:36:35,540 - Request: sim.getObjectType(25)
+2025-05-14 19:36:35,540 - Response: 0
+2025-05-14 19:36:35,540 - Request: sim.getObjectPosition(25, -1)
+2025-05-14 19:36:35,540 - Response: [-0.030182048710776344, 0.0028226156996837186, 0.2123798662895986]
+2025-05-14 19:36:35,544 - Request: sim.getObjectOrientation(25, -1)
+2025-05-14 19:36:35,544 - Response: [-0.02816379240055711, 0.21092740675383867, -1.5465553213528143]
+2025-05-14 19:36:35,544 - Request: sim.getObjectAlias(26)
+2025-05-14 19:36:35,544 - Response: m6
+2025-05-14 19:36:35,545 - Request: sim.getObjectType(26)
+2025-05-14 19:36:35,545 - Response: 1
+2025-05-14 19:36:35,545 - Request: sim.getObjectPosition(26, -1)
+2025-05-14 19:36:35,545 - Response: [-0.02950009297051982, 0.00024352950209964846, 0.21144268610643283]
+2025-05-14 19:36:35,545 - Request: sim.getObjectOrientation(26, -1)
+2025-05-14 19:36:35,545 - Response: [0.06537900120689233, -1.3342205587237057, 1.6393364791220164]
+2025-05-14 19:36:35,545 - Request: sim.getObjectAlias(29)
+2025-05-14 19:36:35,545 - Response: holder_section_visual
+2025-05-14 19:36:35,546 - Request: sim.getObjectType(29)
+2025-05-14 19:36:35,546 - Response: 0
+2025-05-14 19:36:35,546 - Request: sim.getObjectPosition(29, -1)
+2025-05-14 19:36:35,546 - Response: [-0.029861182537311327, 0.0024378236197789838, 0.21298545296173632]
+2025-05-14 19:36:35,546 - Request: sim.getObjectOrientation(29, -1)
+2025-05-14 19:36:35,546 - Response: [3.115780885078468, -0.21895340143209097, 1.5506449214242042]
+2025-05-14 19:36:35,550 - Request: sim.getObjectAlias(27)
+2025-05-14 19:36:35,550 - Response: holder_respondable
+2025-05-14 19:36:35,551 - Request: sim.getObjectType(27)
+2025-05-14 19:36:35,551 - Response: 0
+2025-05-14 19:36:35,551 - Request: sim.getObjectPosition(27, -1)
+2025-05-14 19:36:35,551 - Response: [-0.02224286227201086, 0.004106101615973026, 0.24148782340073452]
+2025-05-14 19:36:35,551 - Request: sim.getObjectOrientation(27, -1)
+2025-05-14 19:36:35,551 - Response: [3.0127807475202975, -0.23566516961664571, 1.5293906989968964]
+2025-05-14 19:36:35,551 - Request: sim.getObjectAlias(28)
+2025-05-14 19:36:35,551 - Response: holder_visual
+2025-05-14 19:36:35,552 - Request: sim.getObjectType(28)
+2025-05-14 19:36:35,552 - Response: 0
+2025-05-14 19:36:35,552 - Request: sim.getObjectPosition(28, -1)
+2025-05-14 19:36:35,552 - Response: [-0.022338955145379737, 0.004131672461033481, 0.24150985689878746]
+2025-05-14 19:36:35,552 - Request: sim.getObjectOrientation(28, -1)
+2025-05-14 19:36:35,552 - Response: [3.0138303680044762, -0.23212957973145798, 1.5286812331978534]
+2025-05-14 19:51:41,772 - Request: sim.getObjects(sim.object_joint_type, -1)
+2025-05-14 19:51:41,772 - Response: -1
+2025-05-14 19:51:41,772 - Failed to retrieve joint handles. Check object type and scene setup.
+2025-05-14 19:51:41,773 - Request: sim.getObjectsInTree(sim.handle_scene)
+2025-05-14 19:51:41,773 - Response: [0, 1, 8, 9, 10, 11, 12, 15, 36, 37, 38, 39, 40, 41, 42, 43, 44, 2, 3, 4, 5, 6, 7, 13, 16, 35, 14, 17, 18, 34, 19, 20, 33, 21, 22, 31, 23, 32, 24, 30, 25, 26, 29, 27, 28]
+2025-05-14 19:51:41,773 - Request: sim.getObjectAlias(0)
+2025-05-14 19:51:41,773 - Response: DefaultCamera
+2025-05-14 19:51:41,773 - Request: sim.getObjectType(0)
+2025-05-14 19:51:41,773 - Response: 3
+2025-05-14 19:51:41,773 - Request: sim.getObjectPosition(0, -1)
+2025-05-14 19:51:41,773 - Response: [0.21809873432387392, 0.8771374246099425, 0.05752957013441202]
+2025-05-14 19:51:41,774 - Request: sim.getObjectOrientation(0, -1)
+2025-05-14 19:51:41,774 - Response: [1.5796127799948325, -0.1113786253536355, 0.0009799605300741636]
+2025-05-14 19:51:41,774 - Request: sim.getObjectAlias(1)
+2025-05-14 19:51:41,774 - Response: XYZCameraProxy
+2025-05-14 19:51:41,778 - Request: sim.getObjectType(1)
+2025-05-14 19:51:41,778 - Response: 4
+2025-05-14 19:51:41,778 - Request: sim.getObjectPosition(1, -1)
+2025-05-14 19:51:41,778 - Response: [0.0, 0.0, 0.75]
+2025-05-14 19:51:41,779 - Request: sim.getObjectOrientation(1, -1)
+2025-05-14 19:51:41,779 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:51:41,779 - Request: sim.getObjectAlias(8)
+2025-05-14 19:51:41,779 - Response: DefaultLightA
+2025-05-14 19:51:41,779 - Request: sim.getObjectType(8)
+2025-05-14 19:51:41,779 - Response: 13
+2025-05-14 19:51:41,783 - Request: sim.getObjectPosition(8, -1)
+2025-05-14 19:51:41,783 - Response: [2.68465256690979, 0.4237121045589447, 4.199692249298096]
+2025-05-14 19:51:41,783 - Request: sim.getObjectOrientation(8, -1)
+2025-05-14 19:51:41,783 - Response: [-2.1416442782871763, -1.1082667368981514, 2.2797642115075383]
+2025-05-14 19:51:41,784 - Request: sim.getObjectAlias(9)
+2025-05-14 19:51:41,784 - Response: DefaultLightB
+2025-05-14 19:51:41,784 - Request: sim.getObjectType(9)
+2025-05-14 19:51:41,784 - Response: 13
+2025-05-14 19:51:41,784 - Request: sim.getObjectPosition(9, -1)
+2025-05-14 19:51:41,784 - Response: [2.5355722904205322, 0.7009791135787964, 4.256357192993164]
+2025-05-14 19:51:41,785 - Request: sim.getObjectOrientation(9, -1)
+2025-05-14 19:51:41,785 - Response: [1.794642938017238, 0.0331017996569377, 0.3457228933866296]
+2025-05-14 19:51:41,785 - Request: sim.getObjectAlias(10)
+2025-05-14 19:51:41,785 - Response: DefaultLightC
+2025-05-14 19:51:41,785 - Request: sim.getObjectType(10)
+2025-05-14 19:51:41,785 - Response: 13
+2025-05-14 19:51:41,793 - Request: sim.getObjectPosition(10, -1)
+2025-05-14 19:51:41,793 - Response: [2.4438271522521973, 0.40221044421195984, 4.347628593444824]
+2025-05-14 19:51:41,794 - Request: sim.getObjectOrientation(10, -1)
+2025-05-14 19:51:41,794 - Response: [-1.8632107077957811, 0.9203441813318705, -2.535470712079397]
+2025-05-14 19:51:41,794 - Request: sim.getObjectAlias(11)
+2025-05-14 19:51:41,794 - Response: DefaultLightD
+2025-05-14 19:51:41,794 - Request: sim.getObjectType(11)
+2025-05-14 19:51:41,794 - Response: 13
+2025-05-14 19:51:41,794 - Request: sim.getObjectPosition(11, -1)
+2025-05-14 19:51:41,794 - Response: [2.4438271522521973, 0.40221044421195984, 4.347628593444824]
+2025-05-14 19:51:41,795 - Request: sim.getObjectOrientation(11, -1)
+2025-05-14 19:51:41,795 - Response: [-3.1415925025939906, 1.7491140225344223e-46, -3.7346066782686496e-32]
+2025-05-14 19:51:41,795 - Request: sim.getObjectAlias(12)
+2025-05-14 19:51:41,795 - Response: ResizableFloor_5_25
+2025-05-14 19:51:41,795 - Request: sim.getObjectType(12)
+2025-05-14 19:51:41,795 - Response: 4
+2025-05-14 19:51:41,796 - Request: sim.getObjectPosition(12, -1)
+2025-05-14 19:51:41,796 - Response: [0.0, 0.0, 0.0]
+2025-05-14 19:51:41,796 - Request: sim.getObjectOrientation(12, -1)
+2025-05-14 19:51:41,796 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:51:41,796 - Request: sim.getObjectAlias(15)
+2025-05-14 19:51:41,796 - Response: base_link_respondable
+2025-05-14 19:51:41,800 - Request: sim.getObjectType(15)
+2025-05-14 19:51:41,800 - Response: 0
+2025-05-14 19:51:41,801 - Request: sim.getObjectPosition(15, -1)
+2025-05-14 19:51:41,801 - Response: [-0.05000000074505806, 0.0, 0.017017090693116188]
+2025-05-14 19:51:41,801 - Request: sim.getObjectOrientation(15, -1)
+2025-05-14 19:51:41,801 - Response: [-1.5707987950766196, -0.9459679826234474, -1.5707987950766196]
+2025-05-14 19:51:41,801 - Request: sim.getObjectAlias(36)
+2025-05-14 19:51:41,801 - Response: Cuboid
+2025-05-14 19:51:41,801 - Request: sim.getObjectType(36)
+2025-05-14 19:51:41,801 - Response: 0
+2025-05-14 19:51:41,802 - Request: sim.getObjectPosition(36, -1)
+2025-05-14 19:51:41,802 - Response: [0.17499995231628418, -0.02500000037252903, -1010.3518695808755]
+2025-05-14 19:51:41,802 - Request: sim.getObjectOrientation(36, -1)
+2025-05-14 19:51:41,802 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:51:41,802 - Request: sim.getObjectAlias(37)
+2025-05-14 19:51:41,802 - Response: Vision_sensor
+2025-05-14 19:51:41,806 - Request: sim.getObjectType(37)
+2025-05-14 19:51:41,806 - Response: 9
+2025-05-14 19:51:41,806 - Request: sim.getObjectPosition(37, -1)
+2025-05-14 19:51:41,806 - Response: [0.0, 0.0, 0.029999999329447746]
+2025-05-14 19:51:41,807 - Request: sim.getObjectOrientation(37, -1)
+2025-05-14 19:51:41,807 - Response: [0.0, 1.570796326794, 1.5707968036320548]
+2025-05-14 19:51:41,807 - Request: sim.getObjectAlias(38)
+2025-05-14 19:51:41,807 - Response: Cuboid
+2025-05-14 19:51:41,807 - Request: sim.getObjectType(38)
+2025-05-14 19:51:41,807 - Response: 0
+2025-05-14 19:51:41,811 - Request: sim.getObjectPosition(38, -1)
+2025-05-14 19:51:41,811 - Response: [0.17499999701976776, 0.02500000037252903, 0.009999927133321759]
+2025-05-14 19:51:41,812 - Request: sim.getObjectOrientation(38, -1)
+2025-05-14 19:51:41,812 - Response: [-1.1803939229813826e-16, -6.565718824752042e-17, -2.1633342609914337e-17]
+2025-05-14 19:51:41,812 - Request: sim.getObjectAlias(39)
+2025-05-14 19:51:41,812 - Response: Cuboid
+2025-05-14 19:51:41,812 - Request: sim.getObjectType(39)
+2025-05-14 19:51:41,812 - Response: 0
+2025-05-14 19:51:41,813 - Request: sim.getObjectPosition(39, -1)
+2025-05-14 19:51:41,813 - Response: [0.17499999701976776, -0.07500000298023224, 0.009999927133321759]
+2025-05-14 19:51:41,813 - Request: sim.getObjectOrientation(39, -1)
+2025-05-14 19:51:41,813 - Response: [1.865351925648585e-17, -5.364691983381056e-18, -1.259543650898858e-17]
+2025-05-14 19:51:41,813 - Request: sim.getObjectAlias(40)
+2025-05-14 19:51:41,813 - Response: Cuboid
+2025-05-14 19:51:41,817 - Request: sim.getObjectType(40)
+2025-05-14 19:51:41,817 - Response: 0
+2025-05-14 19:51:41,817 - Request: sim.getObjectPosition(40, -1)
+2025-05-14 19:51:41,817 - Response: [0.17499995231628418, 0.07499998807907104, 0.009999927133321759]
+2025-05-14 19:51:41,818 - Request: sim.getObjectOrientation(40, -1)
+2025-05-14 19:51:41,818 - Response: [8.137384943129927e-17, 4.766054201614538e-17, -4.157077996982079e-18]
+2025-05-14 19:51:41,818 - Request: sim.getObjectAlias(41)
+2025-05-14 19:51:41,818 - Response: Plane
+2025-05-14 19:51:41,818 - Request: sim.getObjectType(41)
+2025-05-14 19:51:41,818 - Response: 0
+2025-05-14 19:51:41,822 - Request: sim.getObjectPosition(41, -1)
+2025-05-14 19:51:41,822 - Response: [-0.10000000149011612, -0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:51:41,822 - Request: sim.getObjectOrientation(41, -1)
+2025-05-14 19:51:41,822 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:51:41,822 - Request: sim.getObjectAlias(42)
+2025-05-14 19:51:41,822 - Response: Plane
+2025-05-14 19:51:41,823 - Request: sim.getObjectType(42)
+2025-05-14 19:51:41,823 - Response: 0
+2025-05-14 19:51:41,823 - Request: sim.getObjectPosition(42, -1)
+2025-05-14 19:51:41,823 - Response: [0.05000000447034836, -0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:51:41,827 - Request: sim.getObjectOrientation(42, -1)
+2025-05-14 19:51:41,827 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:51:41,827 - Request: sim.getObjectAlias(43)
+2025-05-14 19:51:41,827 - Response: Plane
+2025-05-14 19:51:41,828 - Request: sim.getObjectType(43)
+2025-05-14 19:51:41,828 - Response: 0
+2025-05-14 19:51:41,828 - Request: sim.getObjectPosition(43, -1)
+2025-05-14 19:51:41,828 - Response: [-0.09999997913837433, 0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:51:41,828 - Request: sim.getObjectOrientation(43, -1)
+2025-05-14 19:51:41,828 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:51:41,828 - Request: sim.getObjectAlias(44)
+2025-05-14 19:51:41,828 - Response: Plane
+2025-05-14 19:51:41,829 - Request: sim.getObjectType(44)
+2025-05-14 19:51:41,829 - Response: 0
+2025-05-14 19:51:41,829 - Request: sim.getObjectPosition(44, -1)
+2025-05-14 19:51:41,829 - Response: [0.05000000447034836, 0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:51:41,829 - Request: sim.getObjectOrientation(44, -1)
+2025-05-14 19:51:41,829 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:51:41,833 - Request: sim.getObjectAlias(2)
+2025-05-14 19:51:41,833 - Response: DefaultXViewCamera
+2025-05-14 19:51:41,833 - Request: sim.getObjectType(2)
+2025-05-14 19:51:41,833 - Response: 3
+2025-05-14 19:51:41,834 - Request: sim.getObjectPosition(2, -1)
+2025-05-14 19:51:41,834 - Response: [20.0, 0.0, 0.75]
+2025-05-14 19:51:41,834 - Request: sim.getObjectOrientation(2, -1)
+2025-05-14 19:51:41,834 - Response: [0.0, -1.570796326794, -1.5707963267948966]
+2025-05-14 19:51:41,834 - Request: sim.getObjectAlias(3)
+2025-05-14 19:51:41,834 - Response: DefaultYViewCamera
+2025-05-14 19:51:41,834 - Request: sim.getObjectType(3)
+2025-05-14 19:51:41,834 - Response: 3
+2025-05-14 19:51:41,835 - Request: sim.getObjectPosition(3, -1)
+2025-05-14 19:51:41,835 - Response: [0.0, 20.0, 0.75]
+2025-05-14 19:51:41,835 - Request: sim.getObjectOrientation(3, -1)
+2025-05-14 19:51:41,835 - Response: [1.5707963267948968, 0.0, -0.0]
+2025-05-14 19:51:41,835 - Request: sim.getObjectAlias(4)
+2025-05-14 19:51:41,835 - Response: DefaultZViewCamera
+2025-05-14 19:51:41,839 - Request: sim.getObjectType(4)
+2025-05-14 19:51:41,839 - Response: 3
+2025-05-14 19:51:41,839 - Request: sim.getObjectPosition(4, -1)
+2025-05-14 19:51:41,839 - Response: [0.0, 0.0, 20.75]
+2025-05-14 19:51:41,840 - Request: sim.getObjectOrientation(4, -1)
+2025-05-14 19:51:41,840 - Response: [-3.1415925661670165, 0.0, -0.0]
+2025-05-14 19:51:41,840 - Request: sim.getObjectAlias(5)
+2025-05-14 19:51:41,840 - Response: DefaultNXViewCamera
+2025-05-14 19:51:41,840 - Request: sim.getObjectType(5)
+2025-05-14 19:51:41,840 - Response: 3
+2025-05-14 19:51:41,844 - Request: sim.getObjectPosition(5, -1)
+2025-05-14 19:51:41,844 - Response: [-20.0, -1.748455588312936e-06, 0.75]
+2025-05-14 19:51:41,844 - Request: sim.getObjectOrientation(5, -1)
+2025-05-14 19:51:41,844 - Response: [0.0, 1.570796207585607, 1.5707963267948966]
+2025-05-14 19:51:41,844 - Request: sim.getObjectAlias(6)
+2025-05-14 19:51:41,844 - Response: DefaultNYViewCamera
+2025-05-14 19:51:41,845 - Request: sim.getObjectType(6)
+2025-05-14 19:51:41,845 - Response: 3
+2025-05-14 19:51:41,845 - Request: sim.getObjectPosition(6, -1)
+2025-05-14 19:51:41,845 - Response: [1.748455588312936e-06, -20.0, 0.75]
+2025-05-14 19:51:41,845 - Request: sim.getObjectOrientation(6, -1)
+2025-05-14 19:51:41,845 - Response: [-1.5707963267948968, -8.742277237227608e-08, -3.141592653589793]
+2025-05-14 19:51:41,845 - Request: sim.getObjectAlias(7)
+2025-05-14 19:51:41,845 - Response: DefaultNZViewCamera
+2025-05-14 19:51:41,846 - Request: sim.getObjectType(7)
+2025-05-14 19:51:41,846 - Response: 3
+2025-05-14 19:51:41,846 - Request: sim.getObjectPosition(7, -1)
+2025-05-14 19:51:41,846 - Response: [1.8140226529794745e-06, 1.5858690229075822e-13, -20.75]
+2025-05-14 19:51:41,846 - Request: sim.getObjectOrientation(7, -1)
+2025-05-14 19:51:41,846 - Response: [8.742278750027412e-08, -8.742276564667658e-08, 8.742278750027412e-08]
+2025-05-14 19:51:41,851 - Request: sim.getObjectAlias(13)
+2025-05-14 19:51:41,851 - Response: ResizableFloor_5_25_element
+2025-05-14 19:51:41,851 - Request: sim.getObjectType(13)
+2025-05-14 19:51:41,851 - Response: 0
+2025-05-14 19:51:41,852 - Request: sim.getObjectPosition(13, -1)
+2025-05-14 19:51:41,852 - Response: [0.0, 0.0, -0.020000072196125984]
+2025-05-14 19:51:41,852 - Request: sim.getObjectOrientation(13, -1)
+2025-05-14 19:51:41,852 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:51:41,852 - Request: sim.getObjectAlias(16)
+2025-05-14 19:51:41,852 - Response: m1
+2025-05-14 19:51:41,856 - Request: sim.getObjectType(16)
+2025-05-14 19:51:41,856 - Response: 1
+2025-05-14 19:51:41,856 - Request: sim.getObjectPosition(16, -1)
+2025-05-14 19:51:41,856 - Response: [-0.016649709529225218, 0.00017796001185420475, 0.03282843307991573]
+2025-05-14 19:51:41,856 - Request: sim.getObjectOrientation(16, -1)
+2025-05-14 19:51:41,856 - Response: [-0.0017370927413322857, 0.001955391777462219, 1.5707964331143407]
+2025-05-14 19:51:41,857 - Request: sim.getObjectAlias(35)
+2025-05-14 19:51:41,857 - Response: base_link_visual
+2025-05-14 19:51:41,857 - Request: sim.getObjectType(35)
+2025-05-14 19:51:41,857 - Response: 0
+2025-05-14 19:51:41,857 - Request: sim.getObjectPosition(35, -1)
+2025-05-14 19:51:41,857 - Response: [-0.0545617943651326, -2.072852656892142e-06, 0.01718189095038106]
+2025-05-14 19:51:41,861 - Request: sim.getObjectOrientation(35, -1)
+2025-05-14 19:51:41,861 - Response: [0.0, -1.568674160812035, 0.0017372539688747968]
+2025-05-14 19:51:41,861 - Request: sim.getObjectAlias(14)
+2025-05-14 19:51:41,861 - Response: ResizableFloor_5_25_visibleElement
+2025-05-14 19:51:41,861 - Request: sim.getObjectType(14)
+2025-05-14 19:51:41,861 - Response: 0
+2025-05-14 19:51:41,861 - Request: sim.getObjectPosition(14, -1)
+2025-05-14 19:51:41,861 - Response: [0.0, 0.0, 3.5390257835388184e-08]
+2025-05-14 19:51:41,862 - Request: sim.getObjectOrientation(14, -1)
+2025-05-14 19:51:41,862 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:51:41,862 - Request: sim.getObjectAlias(17)
+2025-05-14 19:51:41,862 - Response: long_U_respondable
+2025-05-14 19:51:41,862 - Request: sim.getObjectType(17)
+2025-05-14 19:51:41,862 - Response: 0
+2025-05-14 19:51:41,866 - Request: sim.getObjectPosition(17, -1)
+2025-05-14 19:51:41,866 - Response: [-0.017409820324222277, 0.00018037361215703356, 0.04966461266320018]
+2025-05-14 19:51:41,866 - Request: sim.getObjectOrientation(17, -1)
+2025-05-14 19:51:41,866 - Response: [-1.5719725676771341, -0.019876301632538604, 3.0991258131728086]
+2025-05-14 19:51:41,867 - Request: sim.getObjectAlias(18)
+2025-05-14 19:51:41,867 - Response: m2
+2025-05-14 19:51:41,867 - Request: sim.getObjectType(18)
+2025-05-14 19:51:41,867 - Response: 1
+2025-05-14 19:51:41,867 - Request: sim.getObjectPosition(18, -1)
+2025-05-14 19:51:41,867 - Response: [-0.017723601139214208, 0.00018246229331364048, 0.056743354213091755]
+2025-05-14 19:51:41,871 - Request: sim.getObjectOrientation(18, -1)
+2025-05-14 19:51:41,871 - Response: [-1.5719726246885446, -0.01987623953254165, 3.098472127923734]
+2025-05-14 19:51:41,871 - Request: sim.getObjectAlias(34)
+2025-05-14 19:51:41,871 - Response: long_U_visual
+2025-05-14 19:51:41,872 - Request: sim.getObjectType(34)
+2025-05-14 19:51:41,872 - Response: 0
+2025-05-14 19:51:41,872 - Request: sim.getObjectPosition(34, -1)
+2025-05-14 19:51:41,872 - Response: [-0.017418701521212835, 0.00018020184756146345, 0.04966867996338718]
+2025-05-14 19:51:41,872 - Request: sim.getObjectOrientation(34, -1)
+2025-05-14 19:51:41,872 - Response: [1.5696201732738717, 0.019876305343991454, -3.098435980480835]
+2025-05-14 19:51:41,872 - Request: sim.getObjectAlias(19)
+2025-05-14 19:51:41,872 - Response: section_1_respondable
+2025-05-14 19:51:41,873 - Request: sim.getObjectType(19)
+2025-05-14 19:51:41,873 - Response: 0
+2025-05-14 19:51:41,873 - Request: sim.getObjectPosition(19, -1)
+2025-05-14 19:51:41,873 - Response: [-0.03818151596870188, -0.00036387547565312577, 0.07401579505222476]
+2025-05-14 19:51:41,873 - Request: sim.getObjectOrientation(19, -1)
+2025-05-14 19:51:41,873 - Response: [3.1278586267214727, 0.876104440032731, -3.1130864280854564]
+2025-05-14 19:51:41,877 - Request: sim.getObjectAlias(20)
+2025-05-14 19:51:41,877 - Response: m3
+2025-05-14 19:51:41,877 - Request: sim.getObjectType(20)
+2025-05-14 19:51:41,877 - Response: 1
+2025-05-14 19:51:41,878 - Request: sim.getObjectPosition(20, -1)
+2025-05-14 19:51:41,878 - Response: [-0.05888030087140634, -0.000386619295907334, 0.09115720301277272]
+2025-05-14 19:51:41,878 - Request: sim.getObjectOrientation(20, -1)
+2025-05-14 19:51:41,878 - Response: [-1.5715378586895246, -0.014721154907733179, 2.2615757350739263]
+2025-05-14 19:51:41,878 - Request: sim.getObjectAlias(33)
+2025-05-14 19:51:41,878 - Response: section_1_visual
+2025-05-14 19:51:41,882 - Request: sim.getObjectType(33)
+2025-05-14 19:51:41,882 - Response: 0
+2025-05-14 19:51:41,882 - Request: sim.getObjectPosition(33, -1)
+2025-05-14 19:51:41,882 - Response: [-0.03843448122973221, -0.00012717983029798008, 0.0742539795915234]
+2025-05-14 19:51:41,882 - Request: sim.getObjectOrientation(33, -1)
+2025-05-14 19:51:41,882 - Response: [0.015485721971741712, -0.8799082014260814, -3.119706645756696]
+2025-05-14 19:51:41,882 - Request: sim.getObjectAlias(21)
+2025-05-14 19:51:41,882 - Response: section_2_respondable
+2025-05-14 19:51:41,883 - Request: sim.getObjectType(21)
+2025-05-14 19:51:41,883 - Response: 0
+2025-05-14 19:51:41,883 - Request: sim.getObjectPosition(21, -1)
+2025-05-14 19:51:41,883 - Response: [-0.06435591322606848, -0.0010882504484106693, 0.10020680695645215]
+2025-05-14 19:51:41,883 - Request: sim.getObjectOrientation(21, -1)
+2025-05-14 19:51:41,883 - Response: [3.09499984384646, 0.5617198557057841, 3.128666887113782]
+2025-05-14 19:51:41,884 - Request: sim.getObjectAlias(22)
+2025-05-14 19:51:41,884 - Response: m4
+2025-05-14 19:51:41,884 - Request: sim.getObjectType(22)
+2025-05-14 19:51:41,884 - Response: 1
+2025-05-14 19:51:41,884 - Request: sim.getObjectPosition(22, -1)
+2025-05-14 19:51:41,884 - Response: [-0.07502473068459342, -0.000608267404989507, 0.11623921594379598]
+2025-05-14 19:51:41,891 - Request: sim.getObjectOrientation(22, -1)
+2025-05-14 19:51:41,891 - Response: [-3.1327210876676097, 0.5727672933952145, -1.587934746269894]
+2025-05-14 19:51:41,891 - Request: sim.getObjectAlias(31)
+2025-05-14 19:51:41,891 - Response: section_2_visual
+2025-05-14 19:51:41,891 - Request: sim.getObjectType(31)
+2025-05-14 19:51:41,892 - Response: 0
+2025-05-14 19:51:41,892 - Request: sim.getObjectPosition(31, -1)
+2025-05-14 19:51:41,892 - Response: [-0.06456096176684, -0.0009039521403591806, 0.10000779494977881]
+2025-05-14 19:51:41,892 - Request: sim.getObjectOrientation(31, -1)
+2025-05-14 19:51:41,892 - Response: [-0.003686597363958247, -0.5729123928291562, -3.131261195012738]
+2025-05-14 19:51:41,892 - Request: sim.getObjectAlias(23)
+2025-05-14 19:51:41,892 - Response: section_3_respondable
+2025-05-14 19:51:41,893 - Request: sim.getObjectType(23)
+2025-05-14 19:51:41,893 - Response: 0
+2025-05-14 19:51:41,893 - Request: sim.getObjectPosition(23, -1)
+2025-05-14 19:51:41,893 - Response: [-0.06158013838202259, 0.0014577804823481541, 0.1413314802976779]
+2025-05-14 19:51:41,893 - Request: sim.getObjectOrientation(23, -1)
+2025-05-14 19:51:41,893 - Response: [-3.0489873294065313, -0.992456660827096, -3.074081417871308]
+2025-05-14 19:51:41,897 - Request: sim.getObjectAlias(32)
+2025-05-14 19:51:41,897 - Response: Dummy
+2025-05-14 19:51:41,897 - Request: sim.getObjectType(32)
+2025-05-14 19:51:41,897 - Response: 4
+2025-05-14 19:51:41,898 - Request: sim.getObjectPosition(32, -1)
+2025-05-14 19:51:41,898 - Response: [-0.14587322045451553, -0.00043926175016665463, 0.22605581134864638]
+2025-05-14 19:51:41,898 - Request: sim.getObjectOrientation(32, -1)
+2025-05-14 19:51:41,898 - Response: [0.010980648917094809, -0.574691374816441, 0.018284868519340178]
+2025-05-14 19:51:41,898 - Request: sim.getObjectAlias(24)
+2025-05-14 19:51:41,898 - Response: m5
+2025-05-14 19:51:41,898 - Request: sim.getObjectType(24)
+2025-05-14 19:51:41,898 - Response: 1
+2025-05-14 19:51:41,898 - Request: sim.getObjectPosition(24, -1)
+2025-05-14 19:51:41,898 - Response: [-0.043063255395858015, -4.525203641700523e-05, 0.15506736368402507]
+2025-05-14 19:51:41,899 - Request: sim.getObjectOrientation(24, -1)
+2025-05-14 19:51:41,899 - Response: [1.5695063942804757, 0.016055837740479223, 0.5755069567276424]
+2025-05-14 19:51:41,899 - Request: sim.getObjectAlias(30)
+2025-05-14 19:51:41,899 - Response: section_3_visual
+2025-05-14 19:51:41,903 - Request: sim.getObjectType(30)
+2025-05-14 19:51:41,903 - Response: 0
+2025-05-14 19:51:41,903 - Request: sim.getObjectPosition(30, -1)
+2025-05-14 19:51:41,903 - Response: [-0.061948157616821285, -0.00035350636610679523, 0.14097369087039965]
+2025-05-14 19:51:41,903 - Request: sim.getObjectOrientation(30, -1)
+2025-05-14 19:51:41,903 - Response: [3.115596120488347, -0.9944374743380967, 3.112128266653138]
+2025-05-14 19:51:41,904 - Request: sim.getObjectAlias(25)
+2025-05-14 19:51:41,904 - Response: holder_section_respondable
+2025-05-14 19:51:41,904 - Request: sim.getObjectType(25)
+2025-05-14 19:51:41,904 - Response: 0
+2025-05-14 19:51:41,904 - Request: sim.getObjectPosition(25, -1)
+2025-05-14 19:51:41,904 - Response: [-0.030182048710776302, 0.0028226156996836106, 0.21237986628959848]
+2025-05-14 19:51:41,904 - Request: sim.getObjectOrientation(25, -1)
+2025-05-14 19:51:41,904 - Response: [-0.02816379240055711, 0.21092740675383867, -1.5465553213528143]
+2025-05-14 19:51:41,905 - Request: sim.getObjectAlias(26)
+2025-05-14 19:51:41,905 - Response: m6
+2025-05-14 19:51:41,905 - Request: sim.getObjectType(26)
+2025-05-14 19:51:41,905 - Response: 1
+2025-05-14 19:51:41,911 - Request: sim.getObjectPosition(26, -1)
+2025-05-14 19:51:41,911 - Response: [-0.029500092970519778, 0.00024352950209954047, 0.21144268610643271]
+2025-05-14 19:51:41,911 - Request: sim.getObjectOrientation(26, -1)
+2025-05-14 19:51:41,911 - Response: [0.06537900120689233, -1.3342205587237057, 1.6393364791220164]
+2025-05-14 19:51:41,911 - Request: sim.getObjectAlias(29)
+2025-05-14 19:51:41,911 - Response: holder_section_visual
+2025-05-14 19:51:41,911 - Request: sim.getObjectType(29)
+2025-05-14 19:51:41,911 - Response: 0
+2025-05-14 19:51:41,912 - Request: sim.getObjectPosition(29, -1)
+2025-05-14 19:51:41,912 - Response: [-0.029861182537311286, 0.0024378236197788758, 0.2129854529617362]
+2025-05-14 19:51:41,912 - Request: sim.getObjectOrientation(29, -1)
+2025-05-14 19:51:41,912 - Response: [3.115780885078468, -0.21895340143209097, 1.5506449214242042]
+2025-05-14 19:51:41,912 - Request: sim.getObjectAlias(27)
+2025-05-14 19:51:41,912 - Response: holder_respondable
+2025-05-14 19:51:41,916 - Request: sim.getObjectType(27)
+2025-05-14 19:51:41,916 - Response: 0
+2025-05-14 19:51:41,916 - Request: sim.getObjectPosition(27, -1)
+2025-05-14 19:51:41,916 - Response: [-0.022242862272010822, 0.004106101615973041, 0.24148782340073444]
+2025-05-14 19:51:41,917 - Request: sim.getObjectOrientation(27, -1)
+2025-05-14 19:51:41,917 - Response: [3.0127807475202975, -0.23566516961664571, 1.5293906989968964]
+2025-05-14 19:51:41,917 - Request: sim.getObjectAlias(28)
+2025-05-14 19:51:41,917 - Response: holder_visual
+2025-05-14 19:51:41,917 - Request: sim.getObjectType(28)
+2025-05-14 19:51:41,917 - Response: 0
+2025-05-14 19:51:41,921 - Request: sim.getObjectPosition(28, -1)
+2025-05-14 19:51:41,921 - Response: [-0.022338955145379737, 0.004131672461033481, 0.24150985689878746]
+2025-05-14 19:51:41,922 - Request: sim.getObjectOrientation(28, -1)
+2025-05-14 19:51:41,922 - Response: [3.0138303680044762, -0.23212957973145798, 1.5286812331978534]
+2025-05-14 19:53:30,155 - Request: sim.getObjects(sim.object_joint_type, -1)
+2025-05-14 19:53:30,155 - Response: -1
+2025-05-14 19:53:30,156 - Failed to retrieve joint handles. Check object type and scene setup.
+2025-05-14 19:53:30,156 - Request: sim.getObjectsInTree(sim.handle_scene)
+2025-05-14 19:53:30,156 - Response: [0, 1, 8, 9, 10, 11, 12, 15, 36, 37, 38, 39, 40, 41, 42, 43, 44, 2, 3, 4, 5, 6, 7, 13, 16, 35, 14, 17, 18, 34, 19, 20, 33, 21, 22, 31, 23, 32, 24, 30, 25, 26, 29, 27, 28]
+2025-05-14 19:53:30,156 - Request: sim.getObjectAlias(0)
+2025-05-14 19:53:30,156 - Response: DefaultCamera
+2025-05-14 19:53:30,157 - Request: sim.getObjectType(0)
+2025-05-14 19:53:30,157 - Response: 3
+2025-05-14 19:53:30,157 - Request: sim.getObjectPosition(0, -1)
+2025-05-14 19:53:30,157 - Response: [0.21809873432387392, 0.8771374246099425, 0.05752957013441202]
+2025-05-14 19:53:30,157 - Request: sim.getObjectOrientation(0, -1)
+2025-05-14 19:53:30,157 - Response: [1.5796127799948325, -0.1113786253536355, 0.0009799605300741636]
+2025-05-14 19:53:30,157 - Request: sim.getObjectAlias(1)
+2025-05-14 19:53:30,157 - Response: XYZCameraProxy
+2025-05-14 19:53:30,158 - Request: sim.getObjectType(1)
+2025-05-14 19:53:30,158 - Response: 4
+2025-05-14 19:53:30,158 - Request: sim.getObjectPosition(1, -1)
+2025-05-14 19:53:30,158 - Response: [0.0, 0.0, 0.75]
+2025-05-14 19:53:30,158 - Request: sim.getObjectOrientation(1, -1)
+2025-05-14 19:53:30,158 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:53:30,162 - Request: sim.getObjectAlias(8)
+2025-05-14 19:53:30,162 - Response: DefaultLightA
+2025-05-14 19:53:30,162 - Request: sim.getObjectType(8)
+2025-05-14 19:53:30,162 - Response: 13
+2025-05-14 19:53:30,163 - Request: sim.getObjectPosition(8, -1)
+2025-05-14 19:53:30,163 - Response: [2.68465256690979, 0.4237121045589447, 4.199692249298096]
+2025-05-14 19:53:30,163 - Request: sim.getObjectOrientation(8, -1)
+2025-05-14 19:53:30,163 - Response: [-2.1416442782871763, -1.1082667368981514, 2.2797642115075383]
+2025-05-14 19:53:30,163 - Request: sim.getObjectAlias(9)
+2025-05-14 19:53:30,163 - Response: DefaultLightB
+2025-05-14 19:53:30,164 - Request: sim.getObjectType(9)
+2025-05-14 19:53:30,164 - Response: 13
+2025-05-14 19:53:30,164 - Request: sim.getObjectPosition(9, -1)
+2025-05-14 19:53:30,164 - Response: [2.5355722904205322, 0.7009791135787964, 4.256357192993164]
+2025-05-14 19:53:30,173 - Request: sim.getObjectOrientation(9, -1)
+2025-05-14 19:53:30,173 - Response: [1.794642938017238, 0.0331017996569377, 0.3457228933866296]
+2025-05-14 19:53:30,173 - Request: sim.getObjectAlias(10)
+2025-05-14 19:53:30,173 - Response: DefaultLightC
+2025-05-14 19:53:30,173 - Request: sim.getObjectType(10)
+2025-05-14 19:53:30,173 - Response: 13
+2025-05-14 19:53:30,174 - Request: sim.getObjectPosition(10, -1)
+2025-05-14 19:53:30,174 - Response: [2.4438271522521973, 0.40221044421195984, 4.347628593444824]
+2025-05-14 19:53:30,174 - Request: sim.getObjectOrientation(10, -1)
+2025-05-14 19:53:30,174 - Response: [-1.8632107077957811, 0.9203441813318705, -2.535470712079397]
+2025-05-14 19:53:30,174 - Request: sim.getObjectAlias(11)
+2025-05-14 19:53:30,174 - Response: DefaultLightD
+2025-05-14 19:53:30,174 - Request: sim.getObjectType(11)
+2025-05-14 19:53:30,174 - Response: 13
+2025-05-14 19:53:30,175 - Request: sim.getObjectPosition(11, -1)
+2025-05-14 19:53:30,175 - Response: [2.4438271522521973, 0.40221044421195984, 4.347628593444824]
+2025-05-14 19:53:30,175 - Request: sim.getObjectOrientation(11, -1)
+2025-05-14 19:53:30,175 - Response: [-3.1415925025939906, 1.7491140225344223e-46, -3.7346066782686496e-32]
+2025-05-14 19:53:30,175 - Request: sim.getObjectAlias(12)
+2025-05-14 19:53:30,175 - Response: ResizableFloor_5_25
+2025-05-14 19:53:30,179 - Request: sim.getObjectType(12)
+2025-05-14 19:53:30,179 - Response: 4
+2025-05-14 19:53:30,179 - Request: sim.getObjectPosition(12, -1)
+2025-05-14 19:53:30,179 - Response: [0.0, 0.0, 0.0]
+2025-05-14 19:53:30,180 - Request: sim.getObjectOrientation(12, -1)
+2025-05-14 19:53:30,180 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:53:30,180 - Request: sim.getObjectAlias(15)
+2025-05-14 19:53:30,180 - Response: base_link_respondable
+2025-05-14 19:53:30,180 - Request: sim.getObjectType(15)
+2025-05-14 19:53:30,180 - Response: 0
+2025-05-14 19:53:30,180 - Request: sim.getObjectPosition(15, -1)
+2025-05-14 19:53:30,180 - Response: [-0.05000000074505806, 0.0, 0.017017090693116188]
+2025-05-14 19:53:30,181 - Request: sim.getObjectOrientation(15, -1)
+2025-05-14 19:53:30,181 - Response: [-1.5707987950766196, -0.9459679826234474, -1.5707987950766196]
+2025-05-14 19:53:30,181 - Request: sim.getObjectAlias(36)
+2025-05-14 19:53:30,181 - Response: Cuboid
+2025-05-14 19:53:30,181 - Request: sim.getObjectType(36)
+2025-05-14 19:53:30,181 - Response: 0
+2025-05-14 19:53:30,185 - Request: sim.getObjectPosition(36, -1)
+2025-05-14 19:53:30,185 - Response: [0.17499995231628418, -0.02500000037252903, -1010.3518695808755]
+2025-05-14 19:53:30,185 - Request: sim.getObjectOrientation(36, -1)
+2025-05-14 19:53:30,185 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:53:30,186 - Request: sim.getObjectAlias(37)
+2025-05-14 19:53:30,186 - Response: Vision_sensor
+2025-05-14 19:53:30,186 - Request: sim.getObjectType(37)
+2025-05-14 19:53:30,186 - Response: 9
+2025-05-14 19:53:30,186 - Request: sim.getObjectPosition(37, -1)
+2025-05-14 19:53:30,186 - Response: [0.0, 0.0, 0.029999999329447746]
+2025-05-14 19:53:30,186 - Request: sim.getObjectOrientation(37, -1)
+2025-05-14 19:53:30,186 - Response: [0.0, 1.570796326794, 1.5707968036320548]
+2025-05-14 19:53:30,187 - Request: sim.getObjectAlias(38)
+2025-05-14 19:53:30,187 - Response: Cuboid
+2025-05-14 19:53:30,187 - Request: sim.getObjectType(38)
+2025-05-14 19:53:30,187 - Response: 0
+2025-05-14 19:53:30,187 - Request: sim.getObjectPosition(38, -1)
+2025-05-14 19:53:30,187 - Response: [0.17499999701976776, 0.02500000037252903, 0.009999927133321759]
+2025-05-14 19:53:30,192 - Request: sim.getObjectOrientation(38, -1)
+2025-05-14 19:53:30,192 - Response: [-6.026830560995573e-17, 9.535496385970003e-17, -2.292268339538122e-17]
+2025-05-14 19:53:30,192 - Request: sim.getObjectAlias(39)
+2025-05-14 19:53:30,192 - Response: Cuboid
+2025-05-14 19:53:30,192 - Request: sim.getObjectType(39)
+2025-05-14 19:53:30,192 - Response: 0
+2025-05-14 19:53:30,193 - Request: sim.getObjectPosition(39, -1)
+2025-05-14 19:53:30,193 - Response: [0.17499999701976776, -0.07500000298023224, 0.009999927133321759]
+2025-05-14 19:53:30,193 - Request: sim.getObjectOrientation(39, -1)
+2025-05-14 19:53:30,193 - Response: [1.1819611667392775e-16, 1.1142394118054738e-16, -1.095812779964123e-17]
+2025-05-14 19:53:30,193 - Request: sim.getObjectAlias(40)
+2025-05-14 19:53:30,193 - Response: Cuboid
+2025-05-14 19:53:30,197 - Request: sim.getObjectType(40)
+2025-05-14 19:53:30,197 - Response: 0
+2025-05-14 19:53:30,197 - Request: sim.getObjectPosition(40, -1)
+2025-05-14 19:53:30,197 - Response: [0.17499995231628418, 0.07499998807907104, 0.009999927133321759]
+2025-05-14 19:53:30,197 - Request: sim.getObjectOrientation(40, -1)
+2025-05-14 19:53:30,197 - Response: [-9.959804278467297e-17, 7.919668348959367e-17, -3.0897882348433e-18]
+2025-05-14 19:53:30,198 - Request: sim.getObjectAlias(41)
+2025-05-14 19:53:30,198 - Response: Plane
+2025-05-14 19:53:30,198 - Request: sim.getObjectType(41)
+2025-05-14 19:53:30,198 - Response: 0
+2025-05-14 19:53:30,198 - Request: sim.getObjectPosition(41, -1)
+2025-05-14 19:53:30,198 - Response: [-0.10000000149011612, -0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:53:30,202 - Request: sim.getObjectOrientation(41, -1)
+2025-05-14 19:53:30,202 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:53:30,202 - Request: sim.getObjectAlias(42)
+2025-05-14 19:53:30,202 - Response: Plane
+2025-05-14 19:53:30,203 - Request: sim.getObjectType(42)
+2025-05-14 19:53:30,203 - Response: 0
+2025-05-14 19:53:30,203 - Request: sim.getObjectPosition(42, -1)
+2025-05-14 19:53:30,203 - Response: [0.05000000447034836, -0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:53:30,207 - Request: sim.getObjectOrientation(42, -1)
+2025-05-14 19:53:30,207 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:53:30,208 - Request: sim.getObjectAlias(43)
+2025-05-14 19:53:30,208 - Response: Plane
+2025-05-14 19:53:30,208 - Request: sim.getObjectType(43)
+2025-05-14 19:53:30,208 - Response: 0
+2025-05-14 19:53:30,208 - Request: sim.getObjectPosition(43, -1)
+2025-05-14 19:53:30,208 - Response: [-0.09999997913837433, 0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:53:30,209 - Request: sim.getObjectOrientation(43, -1)
+2025-05-14 19:53:30,209 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:53:30,209 - Request: sim.getObjectAlias(44)
+2025-05-14 19:53:30,209 - Response: Plane
+2025-05-14 19:53:30,213 - Request: sim.getObjectType(44)
+2025-05-14 19:53:30,213 - Response: 0
+2025-05-14 19:53:30,213 - Request: sim.getObjectPosition(44, -1)
+2025-05-14 19:53:30,213 - Response: [0.05000000447034836, 0.11999999731779099, 0.0020000000949949026]
+2025-05-14 19:53:30,214 - Request: sim.getObjectOrientation(44, -1)
+2025-05-14 19:53:30,214 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:53:30,214 - Request: sim.getObjectAlias(2)
+2025-05-14 19:53:30,214 - Response: DefaultXViewCamera
+2025-05-14 19:53:30,214 - Request: sim.getObjectType(2)
+2025-05-14 19:53:30,214 - Response: 3
+2025-05-14 19:53:30,218 - Request: sim.getObjectPosition(2, -1)
+2025-05-14 19:53:30,218 - Response: [20.0, 0.0, 0.75]
+2025-05-14 19:53:30,218 - Request: sim.getObjectOrientation(2, -1)
+2025-05-14 19:53:30,218 - Response: [0.0, -1.570796326794, -1.5707963267948966]
+2025-05-14 19:53:30,218 - Request: sim.getObjectAlias(3)
+2025-05-14 19:53:30,218 - Response: DefaultYViewCamera
+2025-05-14 19:53:30,219 - Request: sim.getObjectType(3)
+2025-05-14 19:53:30,219 - Response: 3
+2025-05-14 19:53:30,219 - Request: sim.getObjectPosition(3, -1)
+2025-05-14 19:53:30,219 - Response: [0.0, 20.0, 0.75]
+2025-05-14 19:53:30,219 - Request: sim.getObjectOrientation(3, -1)
+2025-05-14 19:53:30,219 - Response: [1.5707963267948968, 0.0, -0.0]
+2025-05-14 19:53:30,219 - Request: sim.getObjectAlias(4)
+2025-05-14 19:53:30,219 - Response: DefaultZViewCamera
+2025-05-14 19:53:30,220 - Request: sim.getObjectType(4)
+2025-05-14 19:53:30,220 - Response: 3
+2025-05-14 19:53:30,220 - Request: sim.getObjectPosition(4, -1)
+2025-05-14 19:53:30,220 - Response: [0.0, 0.0, 20.75]
+2025-05-14 19:53:30,220 - Request: sim.getObjectOrientation(4, -1)
+2025-05-14 19:53:30,220 - Response: [-3.1415925661670165, 0.0, -0.0]
+2025-05-14 19:53:30,224 - Request: sim.getObjectAlias(5)
+2025-05-14 19:53:30,224 - Response: DefaultNXViewCamera
+2025-05-14 19:53:30,224 - Request: sim.getObjectType(5)
+2025-05-14 19:53:30,224 - Response: 3
+2025-05-14 19:53:30,225 - Request: sim.getObjectPosition(5, -1)
+2025-05-14 19:53:30,225 - Response: [-20.0, -1.748455588312936e-06, 0.75]
+2025-05-14 19:53:30,225 - Request: sim.getObjectOrientation(5, -1)
+2025-05-14 19:53:30,225 - Response: [0.0, 1.570796207585607, 1.5707963267948966]
+2025-05-14 19:53:30,225 - Request: sim.getObjectAlias(6)
+2025-05-14 19:53:30,225 - Response: DefaultNYViewCamera
+2025-05-14 19:53:30,231 - Request: sim.getObjectType(6)
+2025-05-14 19:53:30,231 - Response: 3
+2025-05-14 19:53:30,232 - Request: sim.getObjectPosition(6, -1)
+2025-05-14 19:53:30,232 - Response: [1.748455588312936e-06, -20.0, 0.75]
+2025-05-14 19:53:30,232 - Request: sim.getObjectOrientation(6, -1)
+2025-05-14 19:53:30,232 - Response: [-1.5707963267948968, -8.742277237227608e-08, -3.141592653589793]
+2025-05-14 19:53:30,232 - Request: sim.getObjectAlias(7)
+2025-05-14 19:53:30,232 - Response: DefaultNZViewCamera
+2025-05-14 19:53:30,232 - Request: sim.getObjectType(7)
+2025-05-14 19:53:30,232 - Response: 3
+2025-05-14 19:53:30,233 - Request: sim.getObjectPosition(7, -1)
+2025-05-14 19:53:30,233 - Response: [1.8140226529794745e-06, 1.5858690229075822e-13, -20.75]
+2025-05-14 19:53:30,233 - Request: sim.getObjectOrientation(7, -1)
+2025-05-14 19:53:30,233 - Response: [8.742278750027412e-08, -8.742276564667658e-08, 8.742278750027412e-08]
+2025-05-14 19:53:30,233 - Request: sim.getObjectAlias(13)
+2025-05-14 19:53:30,233 - Response: ResizableFloor_5_25_element
+2025-05-14 19:53:30,233 - Request: sim.getObjectType(13)
+2025-05-14 19:53:30,233 - Response: 0
+2025-05-14 19:53:30,233 - Request: sim.getObjectPosition(13, -1)
+2025-05-14 19:53:30,234 - Response: [0.0, 0.0, -0.020000072196125984]
+2025-05-14 19:53:30,234 - Request: sim.getObjectOrientation(13, -1)
+2025-05-14 19:53:30,234 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:53:30,234 - Request: sim.getObjectAlias(16)
+2025-05-14 19:53:30,234 - Response: m1
+2025-05-14 19:53:30,238 - Request: sim.getObjectType(16)
+2025-05-14 19:53:30,238 - Response: 1
+2025-05-14 19:53:30,238 - Request: sim.getObjectPosition(16, -1)
+2025-05-14 19:53:30,238 - Response: [-0.016649709529225218, 0.00017796001185420475, 0.03282843307991573]
+2025-05-14 19:53:30,238 - Request: sim.getObjectOrientation(16, -1)
+2025-05-14 19:53:30,239 - Response: [-0.0017370927413322857, 0.001955391777462219, 1.5707964331143407]
+2025-05-14 19:53:30,239 - Request: sim.getObjectAlias(35)
+2025-05-14 19:53:30,239 - Response: base_link_visual
+2025-05-14 19:53:30,239 - Request: sim.getObjectType(35)
+2025-05-14 19:53:30,239 - Response: 0
+2025-05-14 19:53:30,239 - Request: sim.getObjectPosition(35, -1)
+2025-05-14 19:53:30,239 - Response: [-0.0545617943651326, -2.072852656892142e-06, 0.01718189095038106]
+2025-05-14 19:53:30,239 - Request: sim.getObjectOrientation(35, -1)
+2025-05-14 19:53:30,239 - Response: [0.0, -1.568674160812035, 0.0017372539688747968]
+2025-05-14 19:53:30,240 - Request: sim.getObjectAlias(14)
+2025-05-14 19:53:30,240 - Response: ResizableFloor_5_25_visibleElement
+2025-05-14 19:53:30,240 - Request: sim.getObjectType(14)
+2025-05-14 19:53:30,240 - Response: 0
+2025-05-14 19:53:30,240 - Request: sim.getObjectPosition(14, -1)
+2025-05-14 19:53:30,240 - Response: [0.0, 0.0, 3.5390257835388184e-08]
+2025-05-14 19:53:30,244 - Request: sim.getObjectOrientation(14, -1)
+2025-05-14 19:53:30,244 - Response: [-0.0, 0.0, -0.0]
+2025-05-14 19:53:30,244 - Request: sim.getObjectAlias(17)
+2025-05-14 19:53:30,244 - Response: long_U_respondable
+2025-05-14 19:53:30,245 - Request: sim.getObjectType(17)
+2025-05-14 19:53:30,245 - Response: 0
+2025-05-14 19:53:30,245 - Request: sim.getObjectPosition(17, -1)
+2025-05-14 19:53:30,245 - Response: [-0.017409820324222277, 0.00018037361215703356, 0.04966461266320018]
+2025-05-14 19:53:30,245 - Request: sim.getObjectOrientation(17, -1)
+2025-05-14 19:53:30,245 - Response: [-1.5719725676771341, -0.019876301632538604, 3.0991258131728086]
+2025-05-14 19:53:30,245 - Request: sim.getObjectAlias(18)
+2025-05-14 19:53:30,245 - Response: m2
+2025-05-14 19:53:30,246 - Request: sim.getObjectType(18)
+2025-05-14 19:53:30,246 - Response: 1
+2025-05-14 19:53:30,246 - Request: sim.getObjectPosition(18, -1)
+2025-05-14 19:53:30,246 - Response: [-0.017723601139214208, 0.00018246229331364048, 0.056743354213091755]
+2025-05-14 19:53:30,246 - Request: sim.getObjectOrientation(18, -1)
+2025-05-14 19:53:30,246 - Response: [-1.5719726246885446, -0.019876239532541955, 3.098472127923734]
+2025-05-14 19:53:30,252 - Request: sim.getObjectAlias(34)
+2025-05-14 19:53:30,252 - Response: long_U_visual
+2025-05-14 19:53:30,252 - Request: sim.getObjectType(34)
+2025-05-14 19:53:30,252 - Response: 0
+2025-05-14 19:53:30,252 - Request: sim.getObjectPosition(34, -1)
+2025-05-14 19:53:30,252 - Response: [-0.017418701521212835, 0.00018020184756146345, 0.04966867996338718]
+2025-05-14 19:53:30,253 - Request: sim.getObjectOrientation(34, -1)
+2025-05-14 19:53:30,253 - Response: [1.5696201732738717, 0.019876305343991454, -3.098435980480835]
+2025-05-14 19:53:30,253 - Request: sim.getObjectAlias(19)
+2025-05-14 19:53:30,253 - Response: section_1_respondable
+2025-05-14 19:53:30,253 - Request: sim.getObjectType(19)
+2025-05-14 19:53:30,253 - Response: 0
+2025-05-14 19:53:30,257 - Request: sim.getObjectPosition(19, -1)
+2025-05-14 19:53:30,257 - Response: [-0.03818151596870192, -0.00036387547565309904, 0.07401579505222478]
+2025-05-14 19:53:30,258 - Request: sim.getObjectOrientation(19, -1)
+2025-05-14 19:53:30,258 - Response: [3.1278586267214723, 0.876104440032731, -3.113086428085456]
+2025-05-14 19:53:30,262 - Request: sim.getObjectAlias(20)
+2025-05-14 19:53:30,262 - Response: m3
+2025-05-14 19:53:30,263 - Request: sim.getObjectType(20)
+2025-05-14 19:53:30,263 - Response: 1
+2025-05-14 19:53:30,263 - Request: sim.getObjectPosition(20, -1)
+2025-05-14 19:53:30,263 - Response: [-0.05888030087140634, -0.000386619295907334, 0.09115720301277272]
+2025-05-14 19:53:30,267 - Request: sim.getObjectOrientation(20, -1)
+2025-05-14 19:53:30,267 - Response: [-1.5715378586895246, -0.014721154907733179, 2.2615757350739263]
+2025-05-14 19:53:30,268 - Request: sim.getObjectAlias(33)
+2025-05-14 19:53:30,268 - Response: section_1_visual
+2025-05-14 19:53:30,268 - Request: sim.getObjectType(33)
+2025-05-14 19:53:30,268 - Response: 0
+2025-05-14 19:53:30,272 - Request: sim.getObjectPosition(33, -1)
+2025-05-14 19:53:30,272 - Response: [-0.03843448122973221, -0.00012717983029798008, 0.0742539795915234]
+2025-05-14 19:53:30,273 - Request: sim.getObjectOrientation(33, -1)
+2025-05-14 19:53:30,273 - Response: [0.015485721971741712, -0.8799082014260814, -3.119706645756696]
+2025-05-14 19:53:30,273 - Request: sim.getObjectAlias(21)
+2025-05-14 19:53:30,273 - Response: section_2_respondable
+2025-05-14 19:53:30,273 - Request: sim.getObjectType(21)
+2025-05-14 19:53:30,273 - Response: 0
+2025-05-14 19:53:30,274 - Request: sim.getObjectPosition(21, -1)
+2025-05-14 19:53:30,274 - Response: [-0.06435591322606848, -0.0010882504484106693, 0.10020680695645215]
+2025-05-14 19:53:30,274 - Request: sim.getObjectOrientation(21, -1)
+2025-05-14 19:53:30,274 - Response: [3.09499984384646, 0.5617198557057841, 3.128666887113782]
+2025-05-14 19:53:30,278 - Request: sim.getObjectAlias(22)
+2025-05-14 19:53:30,278 - Response: m4
+2025-05-14 19:53:30,279 - Request: sim.getObjectType(22)
+2025-05-14 19:53:30,279 - Response: 1
+2025-05-14 19:53:30,279 - Request: sim.getObjectPosition(22, -1)
+2025-05-14 19:53:30,279 - Response: [-0.07502473068459342, -0.000608267404989507, 0.11623921594379598]
+2025-05-14 19:53:30,283 - Request: sim.getObjectOrientation(22, -1)
+2025-05-14 19:53:30,283 - Response: [-3.1327210876676097, 0.5727672933952145, -1.587934746269894]
+2025-05-14 19:53:30,284 - Request: sim.getObjectAlias(31)
+2025-05-14 19:53:30,284 - Response: section_2_visual
+2025-05-14 19:53:30,284 - Request: sim.getObjectType(31)
+2025-05-14 19:53:30,284 - Response: 0
+2025-05-14 19:53:30,284 - Request: sim.getObjectPosition(31, -1)
+2025-05-14 19:53:30,284 - Response: [-0.06456096176684001, -0.0009039521403591806, 0.10000779494977881]
+2025-05-14 19:53:30,285 - Request: sim.getObjectOrientation(31, -1)
+2025-05-14 19:53:30,285 - Response: [-0.003686597363958247, -0.5729123928291562, -3.131261195012738]
+2025-05-14 19:53:30,285 - Request: sim.getObjectAlias(23)
+2025-05-14 19:53:30,285 - Response: section_3_respondable
+2025-05-14 19:53:30,292 - Request: sim.getObjectType(23)
+2025-05-14 19:53:30,292 - Response: 0
+2025-05-14 19:53:30,292 - Request: sim.getObjectPosition(23, -1)
+2025-05-14 19:53:30,292 - Response: [-0.0615801383820227, 0.0014577804823481676, 0.14133148029767806]
+2025-05-14 19:53:30,293 - Request: sim.getObjectOrientation(23, -1)
+2025-05-14 19:53:30,293 - Response: [-3.0489873294065313, -0.992456660827096, -3.074081417871308]
+2025-05-14 19:53:30,293 - Request: sim.getObjectAlias(32)
+2025-05-14 19:53:30,293 - Response: Dummy
+2025-05-14 19:53:30,293 - Request: sim.getObjectType(32)
+2025-05-14 19:53:30,293 - Response: 4
+2025-05-14 19:53:30,294 - Request: sim.getObjectPosition(32, -1)
+2025-05-14 19:53:30,294 - Response: [-0.14587322045451567, -0.0004392617501666475, 0.22605581134864627]
+2025-05-14 19:53:30,294 - Request: sim.getObjectOrientation(32, -1)
+2025-05-14 19:53:30,294 - Response: [0.010980648917094809, -0.574691374816441, 0.018284868519340178]
+2025-05-14 19:53:30,298 - Request: sim.getObjectAlias(24)
+2025-05-14 19:53:30,298 - Response: m5
+2025-05-14 19:53:30,298 - Request: sim.getObjectType(24)
+2025-05-14 19:53:30,298 - Response: 1
+2025-05-14 19:53:30,299 - Request: sim.getObjectPosition(24, -1)
+2025-05-14 19:53:30,299 - Response: [-0.04306325539585803, -4.525203641700523e-05, 0.15506736368402507]
+2025-05-14 19:53:30,299 - Request: sim.getObjectOrientation(24, -1)
+2025-05-14 19:53:30,299 - Response: [1.5695063942804757, 0.016055837740479223, 0.5755069567276424]
+2025-05-14 19:53:30,300 - Request: sim.getObjectAlias(30)
+2025-05-14 19:53:30,300 - Response: section_3_visual
+2025-05-14 19:53:30,300 - Request: sim.getObjectType(30)
+2025-05-14 19:53:30,300 - Response: 0
+2025-05-14 19:53:30,304 - Request: sim.getObjectPosition(30, -1)
+2025-05-14 19:53:30,304 - Response: [-0.06194815761682127, -0.00035350636610679523, 0.14097369087039965]
+2025-05-14 19:53:30,304 - Request: sim.getObjectOrientation(30, -1)
+2025-05-14 19:53:30,305 - Response: [3.115596120488347, -0.9944374743380967, 3.112128266653138]
+2025-05-14 19:53:30,305 - Request: sim.getObjectAlias(25)
+2025-05-14 19:53:30,305 - Response: holder_section_respondable
+2025-05-14 19:53:30,305 - Request: sim.getObjectType(25)
+2025-05-14 19:53:30,305 - Response: 0
+2025-05-14 19:53:30,306 - Request: sim.getObjectPosition(25, -1)
+2025-05-14 19:53:30,306 - Response: [-0.030182048710776344, 0.0028226156996837186, 0.2123798662895986]
+2025-05-14 19:53:30,306 - Request: sim.getObjectOrientation(25, -1)
+2025-05-14 19:53:30,306 - Response: [-0.02816379240055711, 0.21092740675383867, -1.5465553213528143]
+2025-05-14 19:53:30,311 - Request: sim.getObjectAlias(26)
+2025-05-14 19:53:30,312 - Response: m6
+2025-05-14 19:53:30,312 - Request: sim.getObjectType(26)
+2025-05-14 19:53:30,312 - Response: 1
+2025-05-14 19:53:30,313 - Request: sim.getObjectPosition(26, -1)
+2025-05-14 19:53:30,313 - Response: [-0.02950009297051982, 0.00024352950209964846, 0.21144268610643283]
+2025-05-14 19:53:30,313 - Request: sim.getObjectOrientation(26, -1)
+2025-05-14 19:53:30,313 - Response: [0.06537900120689233, -1.3342205587237057, 1.6393364791220164]
+2025-05-14 19:53:30,317 - Request: sim.getObjectAlias(29)
+2025-05-14 19:53:30,317 - Response: holder_section_visual
+2025-05-14 19:53:30,317 - Request: sim.getObjectType(29)
+2025-05-14 19:53:30,317 - Response: 0
+2025-05-14 19:53:30,318 - Request: sim.getObjectPosition(29, -1)
+2025-05-14 19:53:30,318 - Response: [-0.029861182537311286, 0.0024378236197788758, 0.2129854529617362]
+2025-05-14 19:53:30,318 - Request: sim.getObjectOrientation(29, -1)
+2025-05-14 19:53:30,318 - Response: [3.115780885078468, -0.21895340143209097, 1.5506449214242042]
+2025-05-14 19:53:30,322 - Request: sim.getObjectAlias(27)
+2025-05-14 19:53:30,322 - Response: holder_respondable
+2025-05-14 19:53:30,323 - Request: sim.getObjectType(27)
+2025-05-14 19:53:30,323 - Response: 0
+2025-05-14 19:53:30,323 - Request: sim.getObjectPosition(27, -1)
+2025-05-14 19:53:30,323 - Response: [-0.022242862272010847, 0.004106101615973007, 0.2414878234007345]
+2025-05-14 19:53:30,327 - Request: sim.getObjectOrientation(27, -1)
+2025-05-14 19:53:30,327 - Response: [3.0127807475202975, -0.23566516961664571, 1.5293906989968964]
+2025-05-14 19:53:30,327 - Request: sim.getObjectAlias(28)
+2025-05-14 19:53:30,327 - Response: holder_visual
+2025-05-14 19:53:30,328 - Request: sim.getObjectType(28)
+2025-05-14 19:53:30,328 - Response: 0
+2025-05-14 19:53:30,332 - Request: sim.getObjectPosition(28, -1)
+2025-05-14 19:53:30,332 - Response: [-0.022338955145379737, 0.004131672461033481, 0.24150985689878746]
+2025-05-14 19:53:30,332 - Request: sim.getObjectOrientation(28, -1)
+2025-05-14 19:53:30,332 - Response: [3.0138303680044762, -0.23212957973145798, 1.5286812331978534]
