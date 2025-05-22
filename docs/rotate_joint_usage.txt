@@ -1,0 +1,1 @@
+Use the rotate_joint tool by specifying 'joint_name' and 'angle_deg'. The angle is in degrees. Example: Rotate the 'elbow' joint to 45 degrees.

@@ -4,8 +4,9 @@ from sse_starlette.sse import EventSourceResponse
 from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 import asyncio
 import math
-from robot.describe import describe_robot, list_joints, describe_scene_and_robot
+from describe import describe_robot, list_joints, describe_scene
 import logging
+from prompts import list_prompts_metadata, get_prompt_by_name
 
 app = FastAPI()
 
@@ -28,40 +29,6 @@ resources = [
         "description": "Explains how to use the rotate_joint tool and expected parameters.",
         "mime_type": "text/plain",
         "content": "Use the rotate_joint tool by specifying 'joint_name' and 'angle_deg'. The angle is in degrees."
-    }
-]
-
-prompts = [
-    {
-        "name": "rotate_joint_prompt",
-        "description": "Prompt to rotate a specific joint to a desired angle.",
-        "arguments": [
-            {
-                "name": "joint_name",
-                "description": "Name of the joint to rotate.",
-                "required": True
-            },
-            {
-                "name": "angle_deg",
-                "description": "Target angle in degrees.",
-                "required": True
-            }
-        ]
-    },
-    {
-        "name": "robot_capabilities",
-        "description": "Describes the robot's capabilities, including movement types and speed.",
-        "content": "The robot can perform various movements such as rotating joints, moving along predefined paths, and adjusting its position with precision. It operates at a maximum speed of X units per second."
-    },
-    {
-        "name": "robot_constraints",
-        "description": "Describes the constraints and limitations of the robot.",
-        "content": "The robot has joint limits that restrict its range of motion. It cannot exceed certain angles or positions due to physical constraints. Environmental factors such as obstacles and boundaries also limit its operation."
-    },
-    {
-        "name": "robot_use_cases",
-        "description": "Provides example scenarios of how the robot is typically used.",
-        "content": "The robot is commonly used for tasks such as assembly, inspection, and material handling. In an assembly line, it can precisely position components and perform repetitive tasks efficiently."
     }
 ]
 
@@ -111,7 +78,7 @@ async def sse(request: Request):
                             },
                             {
                                 "name": "describe_robot",
-                                "description": "Describes the robot's type, joint count, and naming convention.",
+                                "description": "Describes the robot's joints and their details.",
                                 "inputSchema": {
                                     "type": "object",
                                     "properties": {}
@@ -119,10 +86,43 @@ async def sse(request: Request):
                                 "resultSchema": {
                                     "type": "object",
                                     "properties": {
-                                        "robot_type": {"type": "string"},
                                         "joint_count": {"type": "number"},
-                                        "naming_convention": {"type": "string"},
-                                        "description": {"type": "string"}
+                                        "joints": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {"type": "string"},
+                                                    "type": {"type": "string"},
+                                                    "limits": {"type": "array", "items": {"type": "number"}}
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "name": "describe_scene",
+                                "description": "Describes the scene objects (excluding robot joints).",
+                                "inputSchema": {
+                                    "type": "object",
+                                    "properties": {}
+                                },
+                                "resultSchema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "objects": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {"type": "string"},
+                                                    "type": {"type": "string"},
+                                                    "position": {"type": "array", "items": {"type": "number"}},
+                                                    "orientation": {"type": "array", "items": {"type": "number"}}
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             },
@@ -149,42 +149,6 @@ async def sse(request: Request):
                                                         "type": "array",
                                                         "items": {"type": "number"}
                                                     }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "name": "describe_scene_and_robot",
-                                "description": "Provides a comprehensive description of the robot and scene.",
-                                "inputSchema": {
-                                    "type": "object",
-                                    "properties": {}
-                                },
-                                "resultSchema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "joints": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "name": {"type": "string"},
-                                                    "type": {"type": "string"},
-                                                    "limits": {"type": "array", "items": {"type": "number"}}
-                                                }
-                                            }
-                                        },
-                                        "objects": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "name": {"type": "string"},
-                                                    "type": {"type": "string"},
-                                                    "position": {"type": "array", "items": {"type": "number"}},
-                                                    "orientation": {"type": "array", "items": {"type": "number"}}
                                                 }
                                             }
                                         }
@@ -224,12 +188,92 @@ async def sse(request: Request):
                     }
 
                 elif tool_name == "describe_robot":
-                    result = describe_robot()
-                    return {
-                        "jsonrpc": "2.0",
-                        "id": rpc_id,
-                        "result": result
-                    }
+                    try:
+                        result = describe_robot()
+                        robots = result.get("robots", [])
+                        type_map = {
+                            0: "shape",
+                            1: "joint",
+                            2: "graph",
+                            3: "camera",
+                            4: "light",
+                            5: "dummy",
+                            6: "proximity sensor",
+                            7: "octree",
+                            8: "point cloud",
+                            9: "vision sensor",
+                            10: "force sensor",
+                            11: "script"
+                        }
+                        if not robots:
+                            text = "No robots found in the scene."
+                        else:
+                            text = ""
+                            for robot in robots:
+                                text += f"Robot base: {robot['base_name']} (handle: {robot['base_handle']})\n"
+                                for elem in robot['elements']:
+                                    type_name = type_map.get(elem['type'], f"unknown({elem['type']})")
+                                    text += (
+                                        f"  - {elem['name']} (type: {type_name}, handle: {elem['handle']}, "
+                                        f"pos: {elem['position']}, orient: {elem['orientation']})\n"
+                                    )
+                                text += "\n"
+                        return {
+                            "jsonrpc": "2.0",
+                            "id": rpc_id,
+                            "result": {
+                                "content": [
+                                    {
+                                        "type": "text",
+                                        "text": text
+                                    }
+                                ]
+                            }
+                        }
+                    except Exception as e:
+                        logging.exception(f"Error in describe_robot: {str(e)}")
+                        error_response = {
+                            "jsonrpc": "2.0",
+                            "id": rpc_id,
+                            "error": {
+                                "code": -32603,
+                                "message": f"Internal error in describe_robot: {str(e)}"
+                            }
+                        }
+                        return error_response
+
+                elif tool_name == "describe_scene":
+                    try:
+                        result = describe_scene()
+                        return {
+                            "jsonrpc": "2.0",
+                            "id": rpc_id,
+                            "result": {
+                                "content": [
+                                    {
+                                        "type": "text",
+                                        "text": (
+                                            "Objects:\n" +
+                                            "\n".join(
+                                                f"{o.get('name', '')} (type: {o.get('type', '')}, pos: {o.get('position', '')}, orient: {o.get('orientation', '')})"
+                                                for o in result.get('objects', [])
+                                            )
+                                        )
+                                    }
+                                ]
+                            }
+                        }
+                    except Exception as e:
+                        logging.exception(f"Error in describe_scene: {str(e)}")
+                        error_response = {
+                            "jsonrpc": "2.0",
+                            "id": rpc_id,
+                            "error": {
+                                "code": -32603,
+                                "message": f"Internal error in describe_scene: {str(e)}"
+                            }
+                        }
+                        return error_response
 
                 elif tool_name == "list_joints":
                     try:
@@ -266,7 +310,17 @@ async def sse(request: Request):
                         response = {
                             "jsonrpc": "2.0",
                             "id": rpc_id,
-                            "result": {"joints": joints}
+                            "result": {
+                                "content": [
+                                    {
+                                        "type": "text",
+                                        "text": "\n".join(
+                                            f"{j['alias']} (id: {j['id']}), pos: {j['position']}, type: {j['type']}, limits: {j['limits_deg']}"
+                                            for j in joints
+                                        )
+                                    }
+                                ]
+                            }
                         }
                         logging.info(f"Responding with: {response}")
                         return response
@@ -282,14 +336,6 @@ async def sse(request: Request):
                         }
                         logging.info(f"Responding with error: {error_response}")
                         return error_response
-
-                elif tool_name == "describe_scene_and_robot":
-                    result = describe_scene_and_robot()
-                    return {
-                        "jsonrpc": "2.0",
-                        "id": rpc_id,
-                        "result": result
-                    }
 
                 return {
                     "jsonrpc": "2.0",
@@ -314,7 +360,28 @@ async def sse(request: Request):
                     "jsonrpc": "2.0",
                     "id": rpc_id,
                     "result": {
-                        "prompts": prompts
+                        "prompts": list_prompts_metadata()
+                    }
+                }
+            elif method == "prompts/get":
+                prompt_name = params.get("name")
+                arguments = params.get("arguments", {})
+                prompt = get_prompt_by_name(prompt_name, arguments)
+                if prompt is None:
+                    return {
+                        "jsonrpc": "2.0",
+                        "id": rpc_id,
+                        "error": {
+                            "code": -32602,
+                            "message": f"Prompt '{prompt_name}' not found"
+                        }
+                    }
+                return {
+                    "jsonrpc": "2.0",
+                    "id": rpc_id,
+                    "result": {
+                        "description": prompt.get("description", ""),
+                        "messages": prompt["messages"]
                     }
                 }
 
@@ -399,7 +466,7 @@ async def jsonrpc_handler(request: Request):
                         },
                         {
                             "name": "describe_robot",
-                            "description": "Describes the robot's type, joint count, and naming convention.",
+                            "description": "Describes the robot's joints and their details.",
                             "inputSchema": {
                                 "type": "object",
                                 "properties": {}
@@ -407,10 +474,43 @@ async def jsonrpc_handler(request: Request):
                             "resultSchema": {
                                 "type": "object",
                                 "properties": {
-                                    "robot_type": {"type": "string"},
                                     "joint_count": {"type": "number"},
-                                    "naming_convention": {"type": "string"},
-                                    "description": {"type": "string"}
+                                    "joints": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {"type": "string"},
+                                                "type": {"type": "string"},
+                                                "limits": {"type": "array", "items": {"type": "number"}}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "name": "describe_scene",
+                            "description": "Describes the scene objects (excluding robot joints).",
+                            "inputSchema": {
+                                "type": "object",
+                                "properties": {}
+                            },
+                            "resultSchema": {
+                                "type": "object",
+                                "properties": {
+                                    "objects": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {"type": "string"},
+                                                "type": {"type": "string"},
+                                                "position": {"type": "array", "items": {"type": "number"}},
+                                                "orientation": {"type": "array", "items": {"type": "number"}}
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         },
@@ -437,42 +537,6 @@ async def jsonrpc_handler(request: Request):
                                                     "type": "array",
                                                     "items": {"type": "number"}
                                                 }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "name": "describe_scene_and_robot",
-                            "description": "Provides a comprehensive description of the robot and scene.",
-                            "inputSchema": {
-                                "type": "object",
-                                "properties": {}
-                            },
-                            "resultSchema": {
-                                "type": "object",
-                                "properties": {
-                                    "joints": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {"type": "string"},
-                                                "type": {"type": "string"},
-                                                "limits": {"type": "array", "items": {"type": "number"}}
-                                            }
-                                        }
-                                    },
-                                    "objects": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {"type": "string"},
-                                                "type": {"type": "string"},
-                                                "position": {"type": "array", "items": {"type": "number"}},
-                                                "orientation": {"type": "array", "items": {"type": "number"}}
                                             }
                                         }
                                     }
@@ -516,12 +580,92 @@ async def jsonrpc_handler(request: Request):
                 return response
 
             elif tool_name == "describe_robot":
-                result = describe_robot()
-                return {
-                    "jsonrpc": "2.0",
-                    "id": rpc_id,
-                    "result": result
-                }
+                try:
+                    result = describe_robot()
+                    robots = result.get("robots", [])
+                    type_map = {
+                        0: "shape",
+                        1: "joint",
+                        2: "graph",
+                        3: "camera",
+                        4: "light",
+                        5: "dummy",
+                        6: "proximity sensor",
+                        7: "octree",
+                        8: "point cloud",
+                        9: "vision sensor",
+                        10: "force sensor",
+                        11: "script"
+                    }
+                    if not robots:
+                        text = "No robots found in the scene."
+                    else:
+                        text = ""
+                        for robot in robots:
+                            text += f"Robot base: {robot['base_name']} (handle: {robot['base_handle']})\n"
+                            for elem in robot['elements']:
+                                type_name = type_map.get(elem['type'], f"unknown({elem['type']})")
+                                text += (
+                                    f"  - {elem['name']} (type: {type_name}, handle: {elem['handle']}, "
+                                    f"pos: {elem['position']}, orient: {elem['orientation']})\n"
+                                )
+                            text += "\n"
+                    return {
+                        "jsonrpc": "2.0",
+                        "id": rpc_id,
+                        "result": {
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": text
+                                }
+                            ]
+                        }
+                    }
+                except Exception as e:
+                    logging.exception(f"Error in describe_robot: {str(e)}")
+                    error_response = {
+                        "jsonrpc": "2.0",
+                        "id": rpc_id,
+                        "error": {
+                            "code": -32603,
+                            "message": f"Internal error in describe_robot: {str(e)}"
+                        }
+                    }
+                    return error_response
+
+            elif tool_name == "describe_scene":
+                try:
+                    result = describe_scene()
+                    return {
+                        "jsonrpc": "2.0",
+                        "id": rpc_id,
+                        "result": {
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": (
+                                        "Objects:\n" +
+                                        "\n".join(
+                                            f"{o.get('name', '')} (type: {o.get('type', '')}, pos: {o.get('position', '')}, orient: {o.get('orientation', '')})"
+                                            for o in result.get('objects', [])
+                                        )
+                                    )
+                                }
+                            ]
+                        }
+                    }
+                except Exception as e:
+                    logging.exception(f"Error in describe_scene: {str(e)}")
+                    error_response = {
+                        "jsonrpc": "2.0",
+                        "id": rpc_id,
+                        "error": {
+                            "code": -32603,
+                            "message": f"Internal error in describe_scene: {str(e)}"
+                        }
+                    }
+                    return error_response
 
             elif tool_name == "list_joints":
                 try:
@@ -558,7 +702,17 @@ async def jsonrpc_handler(request: Request):
                     response = {
                         "jsonrpc": "2.0",
                         "id": rpc_id,
-                        "result": {"joints": joints}
+                        "result": {
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": "\n".join(
+                                        f"{j['alias']} (id: {j['id']}), pos: {j['position']}, type: {j['type']}, limits: {j['limits_deg']}"
+                                        for j in joints
+                                    )
+                                }
+                            ]
+                        }
                     }
                     logging.info(f"Responding with: {response}")
                     return response
@@ -574,14 +728,6 @@ async def jsonrpc_handler(request: Request):
                     }
                     logging.info(f"Responding with error: {error_response}")
                     return error_response
-
-            elif tool_name == "describe_scene_and_robot":
-                result = describe_scene_and_robot()
-                return {
-                    "jsonrpc": "2.0",
-                    "id": rpc_id,
-                    "result": result
-                }
 
             else:
                 response = {
@@ -611,11 +757,33 @@ async def jsonrpc_handler(request: Request):
                 "jsonrpc": "2.0",
                 "id": rpc_id,
                 "result": {
-                    "prompts": prompts
+                    "prompts": list_prompts_metadata()
                 }
             }
             print("📤 Responding with:", response)
             return response
+
+        elif method == "prompts/get":
+            prompt_name = params.get("name")
+            arguments = params.get("arguments", {})
+            prompt = get_prompt_by_name(prompt_name, arguments)
+            if prompt is None:
+                return {
+                    "jsonrpc": "2.0",
+                    "id": rpc_id,
+                    "error": {
+                        "code": -32602,
+                        "message": f"Prompt '{prompt_name}' not found"
+                    }
+                }
+            return {
+                "jsonrpc": "2.0",
+                "id": rpc_id,
+                "result": {
+                    "description": prompt.get("description", ""),
+                    "messages": prompt["messages"]
+                }
+            }
 
         response = {
             "jsonrpc": "2.0",
@@ -640,4 +808,8 @@ async def jsonrpc_handler(request: Request):
         }
         print("📤 Responding with:", response)
         return response
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 

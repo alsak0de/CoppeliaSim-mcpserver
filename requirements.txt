@@ -1,2 +1,6 @@
 flask==3.0.0
-coppeliasim-zmqremoteapi-client==0.1.0 
+coppeliasim-zmqremoteapi-client==0.1.0
+uvicorn==0.27.1
+fastapi==0.109.2
+sse-starlette==1.8.2
+fastmcp 
