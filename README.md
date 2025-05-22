@@ -52,7 +52,14 @@ pip install -r requirements.txt
   uvicorn coppelia_mcp:app --host 0.0.0.0 --port 8000
   ```
   - This is the standard way to run FastAPI apps in production.
-  - **Note:** In this mode, you cannot set `--coppeliaHost` via the command line. If you need to change the CoppeliaSim host, set it in the code or via an environment variable.
+  - **Note:** In this mode, you cannot set `--coppeliaHost` via the command line. To specify the CoppeliaSim host, set the `COPPELIASIM_HOST` environment variable:
+    ```bash
+    COPPELIASIM_HOST=192.168.1.100 uvicorn coppelia_mcp:app --host 0.0.0.0 --port 8000
+    ```
+  - **Precedence:**
+    1. `--coppeliaHost` (if running with `python coppelia_mcp.py ...`)
+    2. `COPPELIASIM_HOST` environment variable (if set)
+    3. Default: `127.0.0.1`
 - **Transports:**
   - HTTP POST (JSON-RPC)
   - SSE at `/sse` endpoint
