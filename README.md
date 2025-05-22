@@ -10,10 +10,24 @@ A Python-based MCP (Motion Control Protocol) server implementation for CoppeliaS
 
 ## Requirements
 - Python 3.x
-- CoppeliaSim (formerly V-REP)
+- CoppeliaSim (formerly V-REP) **version 4.3 or newer** (ZeroMQ remote API required)
 - Required Python packages (see requirements.txt)
 
 ## Installation
+
+### 0. (Recommended) Create a Conda Environment
+
+It is highly recommended to use a conda environment to avoid dependency conflicts:
+
+```bash
+conda create -n coppelia-mcp python=3.10
+conda activate coppelia-mcp
+```
+
+You can then proceed with the steps below.
+
+### 1. Clone the repository and install requirements
+
 ```bash
 git clone https://github.com/alsak0de/CoppeliaSlim-mcpserver.git
 cd CoppeliaSlim-mcpserver
@@ -27,14 +41,18 @@ pip install -r requirements.txt
 ### 2. Run the MCP server
 
 #### Option A: FastAPI-based server (`coppelia_mcp.py`)
-- **Default:**
+- **Option 1: Development or custom CoppeliaSim host:**
+  ```bash
+  python coppelia_mcp.py --host 0.0.0.0 --port 8000 --coppeliaHost <coppelia_host>
+  ```
+  - This allows you to specify the CoppeliaSim host (default: 127.0.0.1) using `--coppeliaHost`.
+  - The server will launch using the built-in uvicorn runner.
+- **Option 2: Production (recommended):**
   ```bash
   uvicorn coppelia_mcp:app --host 0.0.0.0 --port 8000
   ```
-- **Custom host/port:**
-  ```bash
-  uvicorn coppelia_mcp:app --host <your_host> --port <your_port>
-  ```
+  - This is the standard way to run FastAPI apps in production.
+  - **Note:** In this mode, you cannot set `--coppeliaHost` via the command line. If you need to change the CoppeliaSim host, set it in the code or via an environment variable.
 - **Transports:**
   - HTTP POST (JSON-RPC)
   - SSE at `/sse` endpoint
@@ -43,12 +61,9 @@ pip install -r requirements.txt
 #### Option B: FastMCP-based server (`coppelia_fastmcp.py`)
 - **Default:**
   ```bash
-  python coppelia_fastmcp.py --host 0.0.0.0 --port 8000
+  python coppelia_fastmcp.py --host 0.0.0.0 --port 8000 --coppeliaHost <coppelia_host>
   ```
-- **Custom host/port:**
-  ```bash
-  python coppelia_fastmcp.py --host <your_host> --port <your_port>
-  ```
+  - You can specify the CoppeliaSim host with `--coppeliaHost` (default: 127.0.0.1).
 - **Transports:**
   - HTTP POST (JSON-RPC)
   - SSE at `/sse` endpoint

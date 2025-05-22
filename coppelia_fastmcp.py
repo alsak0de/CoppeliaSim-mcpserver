@@ -129,6 +129,18 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="CoppeliaSim FastMCP Server")
     parser.add_argument("--host", type=str, default="0.0.0.0", help="Host to bind the server to")
     parser.add_argument("--port", type=int, default=8000, help="Port to bind the server to")
+    parser.add_argument("--coppeliaHost", type=str, default="127.0.0.1", help="Host for CoppeliaSim ZeroMQ remote API")
     args = parser.parse_args()
+
+    # Connect to CoppeliaSim with the specified host
+    try:
+        client = RemoteAPIClient(args.coppeliaHost, 23000)
+        sim = client.getObject('sim')
+        print(f"✅ Connected to CoppeliaSim at {args.coppeliaHost}")
+    except Exception as e:
+        print(f"⚠️ Could not connect to CoppeliaSim at {args.coppeliaHost}:", e)
+        sim = None
+
+    import uvicorn
     uvicorn.run(app, host=args.host, port=args.port)
 
