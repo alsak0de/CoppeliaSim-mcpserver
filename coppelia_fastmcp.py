@@ -2,12 +2,12 @@ from fastmcp.server import FastMCP
 from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 import math
 import logging
-from describe import describe_robot, list_joints, describe_scene_and_robot
+from describe import describe_robot as describe_robot_backend, list_joints, describe_scene as describe_scene_backend
 from fastmcp.server.http import create_sse_app
 import argparse
 from prompts import list_prompts_metadata, get_prompt_by_name
 from fastapi import Request
-from fastapi.responses import JSONResponse
+from starlette.responses import JSONResponse
 
 server = FastMCP()
 
@@ -34,7 +34,7 @@ def rotate_joint(joint_name: str, angle_deg: float):
 @server.tool()
 def describe_robot():
     try:
-        result = describe_robot_orig()
+        result = describe_robot_backend()
         robots = result.get("robots", [])
         type_map = {
             0: "shape",
@@ -99,21 +99,20 @@ def list_joints():
         raise Exception(f"Internal error: {str(e)}")
 
 @server.tool()
-def describe_scene_and_robot():
+def describe_scene():
     try:
-        return describe_scene_and_robot()
+        result = describe_scene_backend()
+        return result
     except Exception as e:
-        logging.exception(f"Error in describe_scene_and_robot: {str(e)}")
-        raise Exception(f"Internal error in describe_scene_and_robot: {str(e)}")
+        logging.exception(f"Error in describe_scene: {str(e)}")
+        raise Exception(f"Internal error in describe_scene: {str(e)}")
 
 app = create_sse_app(server, message_path="/", sse_path="/sse")
 
-@app.api_route("/prompts/list", methods=["GET", "POST"])
-async def prompts_list(request: Request):
+async def prompts_list(request):
     return JSONResponse({"prompts": list_prompts_metadata()})
 
-@app.api_route("/prompts/get", methods=["POST"])
-async def prompts_get(request: Request):
+async def prompts_get(request):
     body = await request.json()
     name = body.get("name")
     arguments = body.get("arguments", {})
@@ -124,6 +123,9 @@ async def prompts_get(request: Request):
         "description": prompt.get("description", ""),
         "messages": prompt["messages"]
     })
+
+app.add_route("/prompts/list", prompts_list, methods=["GET", "POST"])
+app.add_route("/prompts/get", prompts_get, methods=["POST"])
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="CoppeliaSim FastMCP Server")

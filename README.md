@@ -40,26 +40,20 @@ pip install -r requirements.txt
 
 ### 2. Run the MCP server
 
-#### Option A: FastAPI-based server (`coppelia_mcp.py`)
-- **Option 1: Development or custom CoppeliaSim host:**
-  ```bash
-  python coppelia_mcp.py --host 0.0.0.0 --port 8000 --coppeliaHost <coppelia_host>
-  ```
-  - This allows you to specify the CoppeliaSim host (default: 127.0.0.1) using `--coppeliaHost`.
-  - The server will launch using the built-in uvicorn runner.
-- **Option 2: Production (recommended):**
-  ```bash
-  uvicorn coppelia_mcp:app --host 0.0.0.0 --port 8000
-  ```
-  - This is the standard way to run FastAPI apps in production.
-  - **Note:** In this mode, you cannot set `--coppeliaHost` via the command line. To specify the CoppeliaSim host, set the `COPPELIASIM_HOST` environment variable:
-    ```bash
-    COPPELIASIM_HOST=192.168.1.100 uvicorn coppelia_mcp:app --host 0.0.0.0 --port 8000
-    ```
-  - **Precedence:**
-    1. `--coppeliaHost` (if running with `python coppelia_mcp.py ...`)
-    2. `COPPELIASIM_HOST` environment variable (if set)
-    3. Default: `127.0.0.1`
+#### Which server should I use?
+- **Option A (FastAPI-based, `coppelia_mcp.py`)** is recommended for most production deployments, especially if you want standard web server features, integration with web tooling, or custom endpoints.
+- **Option B (FastMCP-based, `coppelia_fastmcp.py`)** is ideal for agent/LLM-native workflows, stdio transport, or pure MCP/agent integration.
+- **Option C (Direct script, `coppelia_mcp.py`)** is for development, debugging, or when you need to specify `--coppeliaHost` via CLI.
+
+#### Option A: FastAPI-based server (`coppelia_mcp.py`) [Recommended for production]
+```bash
+COPPELIASIM_HOST=<coppelia_host> uvicorn coppelia_mcp:app --host 0.0.0.0 --port 8000
+```
+- This is the standard way to run FastAPI apps in production.
+- Set the CoppeliaSim host using the `COPPELIASIM_HOST` environment variable.
+- **Precedence:**
+  1. `COPPELIASIM_HOST` environment variable (if set)
+  2. Default: `127.0.0.1`
 - **Transports:**
   - HTTP POST (JSON-RPC)
   - SSE at `/sse` endpoint
@@ -75,6 +69,13 @@ pip install -r requirements.txt
   - HTTP POST (JSON-RPC)
   - SSE at `/sse` endpoint
   - Stdio (native, or via npx mcp-remote if needed)
+
+#### Option C: Direct script (development/debug, `coppelia_mcp.py`)
+```bash
+python coppelia_mcp.py --host 0.0.0.0 --port 8000 --coppeliaHost <coppelia_host>
+```
+- Use this method for development, debugging, or when you need to specify `--coppeliaHost` via CLI.
+- Not recommended for production use; prefer Option A for deployment.
 
 ### 3. Connecting Clients
 - **SSE/HTTP:**
