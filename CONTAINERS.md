@@ -26,23 +26,22 @@ docker build -t coppelia-mcp .
 **Important:**
 - You **must** specify the CoppeliaSim host using the `--coppeliaHost` argument so the MCP server can connect to the CoppeliaSim instance running outside the container.
 - The server always binds to `0.0.0.0` inside the container.
-- The port can be set using the `MCP_PORT` environment variable (default: 8000). You **must** expose the server port to access the API from outside the container.
+- The port can be set by passing it as the first argument to `docker run` (default: 8000). You **must** expose the server port to access the API from outside the container.
 - The `--rm` flag is used so the container is automatically removed when stopped (no persistence is required).
 
 ### Example (replace `<coppelia_host>` with your CoppeliaSim host IP):
 
 ```bash
-docker run --rm -p 8000:8000 coppelia-mcp \
-  --coppeliaHost <coppelia_host>
+docker run --rm -p 8000:8000 coppelia-mcp --coppeliaHost <coppelia_host>
 ```
 
-- To use a different port, set the `MCP_PORT` environment variable and map the port:
+- To use a different port, pass it as the first argument and map the port:
 
 ```bash
-docker run --rm -e MCP_PORT=9000 -p 9000:9000 coppelia-mcp \
-  --coppeliaHost <coppelia_host>
+docker run --rm -p 9000:9000 coppelia-mcp 9000 --coppeliaHost <coppelia_host>
 ```
 
+- Any additional arguments after the port are passed directly to the server script.
 - If CoppeliaSim is running on the same machine (but not in Docker), use `--coppeliaHost host.docker.internal` (on Mac/Windows) or your host's IP address (on Linux).
 - If CoppeliaSim is running in another container, ensure both containers are on the same Docker network and use the appropriate service/container name or IP.
 

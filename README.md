@@ -116,3 +116,21 @@ Community contributions are welcome and encouraged. Please refer to [`CONTRIBUTI
 
 This project is licensed under the [MIT License](./LICENSE).  
 You are free to use, modify, and distribute this project under the terms of that license.
+
+## Running with Docker
+
+You can run the MCP server in a container using Docker. The container entrypoint script allows you to specify the port (default: 8000) as the first argument, and any additional arguments (such as `--coppeliaHost`) are passed directly to the server script.
+
+**Example (replace `<coppelia_host>` with your CoppeliaSim host IP):**
+
+```bash
+docker run --rm -p 8000:8000 coppelia-mcp --coppeliaHost <coppelia_host>
+```
+
+To use a different port:
+
+```bash
+docker run --rm -p 9000:9000 coppelia-mcp 9000 --coppeliaHost <coppelia_host>
+```
+
+See [CONTAINERS.md](./CONTAINERS.md) for more details and advanced usage.
