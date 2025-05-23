@@ -14,19 +14,9 @@ app = FastAPI()
 
 print("🚀 Starting MCP server...")
 
-# Connect to CoppeliaSim
-# Precedence: COPPELIASIM_HOST env var > --coppeliaHost arg (if __main__) > '127.0.0.1'
-coppelia_host = os.environ.get("COPPELIASIM_HOST", "127.0.0.1")
-print(f"Attempting to connect to CoppeliaSim at {coppelia_host}:23000")
-try:
-    client = RemoteAPIClient(coppelia_host, 23000)
-    print("RemoteAPIClient created, attempting to get 'sim' object...")
-    sim = client.getObject('sim')
-    print(f"✅ Connected to CoppeliaSim at {coppelia_host}:23000")
-except Exception as e:
-    print(f"⚠️ Could not connect to CoppeliaSim at {coppelia_host}:23000")
-    print(f"Error details: {str(e)}")
-    sim = None
+# Global variables
+client = None
+sim = None
 
 # Define resources and prompts
 resources = [
@@ -617,14 +607,17 @@ if __name__ == "__main__":
     parser.add_argument("--coppeliaHost", type=str, default=None, help="Host for CoppeliaSim ZeroMQ remote API")
     args = parser.parse_args()
 
-    # If --coppeliaHost is provided, override env var and default
+    # Connect to CoppeliaSim
     coppelia_host = args.coppeliaHost or os.environ.get("COPPELIASIM_HOST", "127.0.0.1")
+    print(f"Attempting to connect to CoppeliaSim at {coppelia_host}:23000")
     try:
         client = RemoteAPIClient(coppelia_host, 23000)
+        print("RemoteAPIClient created, attempting to get 'sim' object...")
         sim = client.getObject('sim')
-        print(f"✅ Connected to CoppeliaSim at {coppelia_host}")
+        print(f"✅ Connected to CoppeliaSim at {coppelia_host}:23000")
     except Exception as e:
-        print(f"⚠️ Could not connect to CoppeliaSim at {coppelia_host}:", e)
+        print(f"⚠️ Could not connect to CoppeliaSim at {coppelia_host}:23000")
+        print(f"Error details: {str(e)}")
         sim = None
 
     uvicorn.run(app, host=args.host, port=args.port)
