@@ -97,6 +97,8 @@ python coppelia_mcp.py --host 0.0.0.0 --port 8000 --coppeliaHost <coppelia_host>
 - `describe_robot`: Returns a detailed, LLM-friendly description of all robot elements
 - `describe_scene`: Returns a description of all scene objects (excluding robot joints)
 
+**Note:** All tool logic is now centralized in `tools.py`. To add a new tool, define your function in `tools.py` (taking `sim` as the first argument), then register it in both `coppelia_mcp.py` and `coppelia_fastmcp.py` as needed. This ensures both servers share the same tool logic and remain consistent.
+
 ## Notes
 - Both servers default to `0.0.0.0:8000` but you can override with `--host` and `--port`.
 - Use the SSE endpoint for best compatibility with modern LLM/agent clients.
@@ -104,8 +106,6 @@ python coppelia_mcp.py --host 0.0.0.0 --port 8000 --coppeliaHost <coppelia_host>
 - **Why/When uvicorn?**
   - For the FastAPI-based server (`coppelia_mcp.py`), you need `uvicorn` (or another ASGI server) to actually serve HTTP/SSE endpoints, because FastAPI is just a framework and does not include a web server.
   - For the FastMCP-based server (`coppelia_fastmcp.py`), you only need `uvicorn` if you want to serve HTTP/SSE endpoints. If you run FastMCP in stdio mode (for agent/CLI integration), you do **not** need `uvicorn` or any web server, since all communication is over stdin/stdout.
-
-
 
 ## Author and Credits
 

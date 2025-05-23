@@ -4,7 +4,7 @@ from sse_starlette.sse import EventSourceResponse
 from coppeliasim_zmqremoteapi_client import RemoteAPIClient
 import asyncio
 import math
-from describe import describe_robot, list_joints, describe_scene
+from tools import rotate_joint, list_joints, describe_robot, describe_scene
 import logging
 from prompts import list_prompts_metadata, get_prompt_by_name
 import argparse
@@ -167,188 +167,81 @@ async def sse(request: Request):
                 tool_name = params.get("name")
                 arguments = params.get("arguments", {})
 
-                if tool_name == "rotate_joint":
-                    joint_name = arguments.get("joint_name")
-                    angle_deg = arguments.get("angle_deg")
-
-                    if sim is None:
-                        raise Exception("CoppeliaSim not connected")
-
-                    joint_handle = sim.getObjectHandle(joint_name)
-                    angle_rad = math.radians(angle_deg)
-                    sim.setJointTargetPosition(joint_handle, angle_rad)
-
+                try:
+                    if tool_name == "rotate_joint":
+                        joint_name = arguments.get("joint_name")
+                        angle_deg = arguments.get("angle_deg")
+                        result = rotate_joint(sim, joint_name, angle_deg)
+                        return {
+                            "jsonrpc": "2.0",
+                            "id": rpc_id,
+                            "result": {
+                                "content": [
+                                    {"type": "text", "text": result}
+                                ]
+                            }
+                        }
+                    elif tool_name == "describe_robot":
+                        text = describe_robot(sim)
+                        return {
+                            "jsonrpc": "2.0",
+                            "id": rpc_id,
+                            "result": {
+                                "content": [
+                                    {"type": "text", "text": text}
+                                ]
+                            }
+                        }
+                    elif tool_name == "describe_scene":
+                        objects = describe_scene(sim)
+                        return {
+                            "jsonrpc": "2.0",
+                            "id": rpc_id,
+                            "result": {
+                                "content": [
+                                    {"type": "text", "text": (
+                                        "Objects:\n" +
+                                        "\n".join(
+                                            f"{o.get('name', '')} (type: {o.get('type', '')}, pos: {o.get('position', '')}, orient: {o.get('orientation', '')})"
+                                            for o in objects
+                                        )
+                                    )}
+                                ]
+                            }
+                        }
+                    elif tool_name == "list_joints":
+                        joints = list_joints(sim)
+                        return {
+                            "jsonrpc": "2.0",
+                            "id": rpc_id,
+                            "result": {
+                                "content": [
+                                    {"type": "text", "text": "\n".join(
+                                        f"{j['alias']} (id: {j['id']}), pos: {j['position']}, type: {j['type']}, limits: {j['limits_deg']}"
+                                        for j in joints
+                                    )}
+                                ]
+                            }
+                        }
+                    else:
+                        return {
+                            "jsonrpc": "2.0",
+                            "id": rpc_id,
+                            "error": {
+                                "code": -32601,
+                                "message": f"Tool '{tool_name}' not found"
+                            }
+                        }
+                except Exception as e:
+                    logging.exception(f"Error in tool '{tool_name}': {str(e)}")
                     return {
                         "jsonrpc": "2.0",
                         "id": rpc_id,
-                        "result": {
-                            "content": [
-                                {
-                                    "type": "text",
-                                    "text": f"Joint '{joint_name}' rotated to {angle_deg} degrees."
-                                }
-                            ]
+                        "error": {
+                            "code": -32603,
+                            "message": f"Internal error in tool '{tool_name}': {str(e)}"
                         }
                     }
-
-                elif tool_name == "describe_robot":
-                    try:
-                        result = describe_robot()
-                        robots = result.get("robots", [])
-                        type_map = {
-                            0: "shape",
-                            1: "joint",
-                            2: "graph",
-                            3: "camera",
-                            4: "light",
-                            5: "dummy",
-                            6: "proximity sensor",
-                            7: "octree",
-                            8: "point cloud",
-                            9: "vision sensor",
-                            10: "force sensor",
-                            11: "script"
-                        }
-                        if not robots:
-                            text = "No robots found in the scene."
-                        else:
-                            text = ""
-                            for robot in robots:
-                                text += f"Robot base: {robot['base_name']} (handle: {robot['base_handle']})\n"
-                                for elem in robot['elements']:
-                                    type_name = type_map.get(elem['type'], f"unknown({elem['type']})")
-                                    text += (
-                                        f"  - {elem['name']} (type: {type_name}, handle: {elem['handle']}, "
-                                        f"pos: {elem['position']}, orient: {elem['orientation']})\n"
-                                    )
-                                text += "\n"
-                        return {
-                            "jsonrpc": "2.0",
-                            "id": rpc_id,
-                            "result": {
-                                "content": [
-                                    {
-                                        "type": "text",
-                                        "text": text
-                                    }
-                                ]
-                            }
-                        }
-                    except Exception as e:
-                        logging.exception(f"Error in describe_robot: {str(e)}")
-                        error_response = {
-                            "jsonrpc": "2.0",
-                            "id": rpc_id,
-                            "error": {
-                                "code": -32603,
-                                "message": f"Internal error in describe_robot: {str(e)}"
-                            }
-                        }
-                        return error_response
-
-                elif tool_name == "describe_scene":
-                    try:
-                        result = describe_scene()
-                        return {
-                            "jsonrpc": "2.0",
-                            "id": rpc_id,
-                            "result": {
-                                "content": [
-                                    {
-                                        "type": "text",
-                                        "text": (
-                                            "Objects:\n" +
-                                            "\n".join(
-                                                f"{o.get('name', '')} (type: {o.get('type', '')}, pos: {o.get('position', '')}, orient: {o.get('orientation', '')})"
-                                                for o in result.get('objects', [])
-                                            )
-                                        )
-                                    }
-                                ]
-                            }
-                        }
-                    except Exception as e:
-                        logging.exception(f"Error in describe_scene: {str(e)}")
-                        error_response = {
-                            "jsonrpc": "2.0",
-                            "id": rpc_id,
-                            "error": {
-                                "code": -32603,
-                                "message": f"Internal error in describe_scene: {str(e)}"
-                            }
-                        }
-                        return error_response
-
-                elif tool_name == "list_joints":
-                    try:
-                        # Use sim.getObjectsInTree to retrieve joint handles
-                        joint_handles = sim.getObjectsInTree(sim.handle_scene, sim.object_joint_type)
-                        logging.info(f"Retrieved joint handles: {joint_handles}")
-                        if isinstance(joint_handles, int) and joint_handles == -1:
-                            raise Exception("Failed to retrieve joint handles. Check object type and scene setup.")
-
-                        joints = []
-                        for handle in joint_handles:
-                            name = sim.getObjectAlias(handle)
-                            logging.info(f"Joint handle {handle} has alias: {name}")
-                            joint_type = sim.getJointType(handle)
-                            logging.info(f"Joint handle {handle} has type: {joint_type}")
-                            cyclic, interval = sim.getJointInterval(handle)
-                            logging.info(f"Joint handle {handle} has interval data: cyclic={cyclic}, interval={interval}")
-                            if cyclic:
-                                limits_deg = ["Cyclic", "Cyclic"]
-                            else:
-                                min_value = interval[0]
-                                range_value = interval[1]
-                                limits_deg = [math.degrees(min_value), math.degrees(min_value + range_value)]
-                            position = sim.getJointPosition(handle)  # Assuming this function exists to get the joint position
-                            logging.info(f"Joint handle {handle} has position: {position}")
-                            joints.append({
-                                "id": handle,
-                                "alias": name,
-                                "position": position,
-                                "type": joint_type,
-                                "limits_deg": limits_deg
-                            })
-
-                        response = {
-                            "jsonrpc": "2.0",
-                            "id": rpc_id,
-                            "result": {
-                                "content": [
-                                    {
-                                        "type": "text",
-                                        "text": "\n".join(
-                                            f"{j['alias']} (id: {j['id']}), pos: {j['position']}, type: {j['type']}, limits: {j['limits_deg']}"
-                                            for j in joints
-                                        )
-                                    }
-                                ]
-                            }
-                        }
-                        logging.info(f"Responding with: {response}")
-                        return response
-                    except Exception as e:
-                        logging.error(f"Error in list_joints: {str(e)}")
-                        error_response = {
-                            "jsonrpc": "2.0",
-                            "id": rpc_id,
-                            "error": {
-                                "code": -32603,
-                                "message": f"Internal error: {str(e)}"
-                            }
-                        }
-                        logging.info(f"Responding with error: {error_response}")
-                        return error_response
-
-                return {
-                    "jsonrpc": "2.0",
-                    "id": rpc_id,
-                    "error": {
-                        "code": -32601,
-                        "message": f"Tool '{tool_name}' not found"
-                    }
-                }
 
             elif method == "resources/list":
                 return {
@@ -557,189 +450,89 @@ async def jsonrpc_handler(request: Request):
             tool_name = params.get("name")
             arguments = params.get("arguments", {})
 
-            if tool_name == "rotate_joint":
-                joint_name = arguments.get("joint_name")
-                angle_deg = arguments.get("angle_deg")
-
-                if sim is None:
-                    raise Exception("CoppeliaSim not connected")
-
-                joint_handle = sim.getObjectHandle(joint_name)
-                angle_rad = math.radians(angle_deg)
-                sim.setJointTargetPosition(joint_handle, angle_rad)
-
-                response = {
-                    "jsonrpc": "2.0",
-                    "id": rpc_id,
-                    "result": {
-                        "content": [
-                            {
-                                "type": "text",
-                                "text": f"Joint '{joint_name}' rotated to {angle_deg} degrees."
-                            }
-                        ]
-                    }
-                }
-                print("📤 Responding with:", response)
-                return response
-
-            elif tool_name == "describe_robot":
-                try:
-                    result = describe_robot()
-                    robots = result.get("robots", [])
-                    type_map = {
-                        0: "shape",
-                        1: "joint",
-                        2: "graph",
-                        3: "camera",
-                        4: "light",
-                        5: "dummy",
-                        6: "proximity sensor",
-                        7: "octree",
-                        8: "point cloud",
-                        9: "vision sensor",
-                        10: "force sensor",
-                        11: "script"
-                    }
-                    if not robots:
-                        text = "No robots found in the scene."
-                    else:
-                        text = ""
-                        for robot in robots:
-                            text += f"Robot base: {robot['base_name']} (handle: {robot['base_handle']})\n"
-                            for elem in robot['elements']:
-                                type_name = type_map.get(elem['type'], f"unknown({elem['type']})")
-                                text += (
-                                    f"  - {elem['name']} (type: {type_name}, handle: {elem['handle']}, "
-                                    f"pos: {elem['position']}, orient: {elem['orientation']})\n"
-                                )
-                            text += "\n"
-                    return {
-                        "jsonrpc": "2.0",
-                        "id": rpc_id,
-                        "result": {
-                            "content": [
-                                {
-                                    "type": "text",
-                                    "text": text
-                                }
-                            ]
-                        }
-                    }
-                except Exception as e:
-                    logging.exception(f"Error in describe_robot: {str(e)}")
-                    error_response = {
-                        "jsonrpc": "2.0",
-                        "id": rpc_id,
-                        "error": {
-                            "code": -32603,
-                            "message": f"Internal error in describe_robot: {str(e)}"
-                        }
-                    }
-                    return error_response
-
-            elif tool_name == "describe_scene":
-                try:
-                    result = describe_scene()
-                    return {
-                        "jsonrpc": "2.0",
-                        "id": rpc_id,
-                        "result": {
-                            "content": [
-                                {
-                                    "type": "text",
-                                    "text": (
-                                        "Objects:\n" +
-                                        "\n".join(
-                                            f"{o.get('name', '')} (type: {o.get('type', '')}, pos: {o.get('position', '')}, orient: {o.get('orientation', '')})"
-                                            for o in result.get('objects', [])
-                                        )
-                                    )
-                                }
-                            ]
-                        }
-                    }
-                except Exception as e:
-                    logging.exception(f"Error in describe_scene: {str(e)}")
-                    error_response = {
-                        "jsonrpc": "2.0",
-                        "id": rpc_id,
-                        "error": {
-                            "code": -32603,
-                            "message": f"Internal error in describe_scene: {str(e)}"
-                        }
-                    }
-                    return error_response
-
-            elif tool_name == "list_joints":
-                try:
-                    # Use sim.getObjectsInTree to retrieve joint handles
-                    joint_handles = sim.getObjectsInTree(sim.handle_scene, sim.object_joint_type)
-                    logging.info(f"Retrieved joint handles: {joint_handles}")
-                    if isinstance(joint_handles, int) and joint_handles == -1:
-                        raise Exception("Failed to retrieve joint handles. Check object type and scene setup.")
-
-                    joints = []
-                    for handle in joint_handles:
-                        name = sim.getObjectAlias(handle)
-                        logging.info(f"Joint handle {handle} has alias: {name}")
-                        joint_type = sim.getJointType(handle)
-                        logging.info(f"Joint handle {handle} has type: {joint_type}")
-                        cyclic, interval = sim.getJointInterval(handle)
-                        logging.info(f"Joint handle {handle} has interval data: cyclic={cyclic}, interval={interval}")
-                        if cyclic:
-                            limits_deg = ["Cyclic", "Cyclic"]
-                        else:
-                            min_value = interval[0]
-                            range_value = interval[1]
-                            limits_deg = [math.degrees(min_value), math.degrees(min_value + range_value)]
-                        position = sim.getJointPosition(handle)  # Assuming this function exists to get the joint position
-                        logging.info(f"Joint handle {handle} has position: {position}")
-                        joints.append({
-                            "id": handle,
-                            "alias": name,
-                            "position": position,
-                            "type": joint_type,
-                            "limits_deg": limits_deg
-                        })
-
+            try:
+                if tool_name == "rotate_joint":
+                    joint_name = arguments.get("joint_name")
+                    angle_deg = arguments.get("angle_deg")
+                    result = rotate_joint(sim, joint_name, angle_deg)
                     response = {
                         "jsonrpc": "2.0",
                         "id": rpc_id,
                         "result": {
                             "content": [
-                                {
-                                    "type": "text",
-                                    "text": "\n".join(
-                                        f"{j['alias']} (id: {j['id']}), pos: {j['position']}, type: {j['type']}, limits: {j['limits_deg']}"
-                                        for j in joints
-                                    )
-                                }
+                                {"type": "text", "text": result}
                             ]
                         }
                     }
-                    logging.info(f"Responding with: {response}")
+                    print("📤 Responding with:", response)
                     return response
-                except Exception as e:
-                    logging.error(f"Error in list_joints: {str(e)}")
-                    error_response = {
+                elif tool_name == "describe_robot":
+                    text = describe_robot(sim)
+                    response = {
+                        "jsonrpc": "2.0",
+                        "id": rpc_id,
+                        "result": {
+                            "content": [
+                                {"type": "text", "text": text}
+                            ]
+                        }
+                    }
+                    print("📤 Responding with:", response)
+                    return response
+                elif tool_name == "describe_scene":
+                    objects = describe_scene(sim)
+                    response = {
+                        "jsonrpc": "2.0",
+                        "id": rpc_id,
+                        "result": {
+                            "content": [
+                                {"type": "text", "text": (
+                                    "Objects:\n" +
+                                    "\n".join(
+                                        f"{o.get('name', '')} (type: {o.get('type', '')}, pos: {o.get('position', '')}, orient: {o.get('orientation', '')})"
+                                        for o in objects
+                                    )
+                                )}
+                            ]
+                        }
+                    }
+                    print("📤 Responding with:", response)
+                    return response
+                elif tool_name == "list_joints":
+                    joints = list_joints(sim)
+                    response = {
+                        "jsonrpc": "2.0",
+                        "id": rpc_id,
+                        "result": {
+                            "content": [
+                                {"type": "text", "text": "\n".join(
+                                    f"{j['alias']} (id: {j['id']}), pos: {j['position']}, type: {j['type']}, limits: {j['limits_deg']}"
+                                    for j in joints
+                                )}
+                            ]
+                        }
+                    }
+                    print("📤 Responding with:", response)
+                    return response
+                else:
+                    response = {
                         "jsonrpc": "2.0",
                         "id": rpc_id,
                         "error": {
-                            "code": -32603,
-                            "message": f"Internal error: {str(e)}"
+                            "code": -32601,
+                            "message": f"Tool '{tool_name}' not found"
                         }
                     }
-                    logging.info(f"Responding with error: {error_response}")
-                    return error_response
-
-            else:
+                    print("📤 Responding with:", response)
+                    return response
+            except Exception as e:
+                print(f"💥 Exception in tool '{tool_name}':", str(e))
                 response = {
                     "jsonrpc": "2.0",
                     "id": rpc_id,
                     "error": {
-                        "code": -32601,
-                        "message": f"Tool '{tool_name}' not found"
+                        "code": -32603,
+                        "message": f"Internal error in tool '{tool_name}': {str(e)}"
                     }
                 }
                 print("📤 Responding with:", response)

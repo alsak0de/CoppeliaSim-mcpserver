@@ -7,10 +7,11 @@ Thank you for your interest in contributing! This project follows the Model Cont
 ## Project Structure Overview
 
 - `coppelia_mcp.py`, `coppelia_fastmcp.py`: Main server entry points.
+- `tools.py`: All tool logic (shared by both servers).
 - `prompts.py`: All prompt definitions and prompt logic.
 - `resources.py`: All resource definitions and resource reading logic.
 - `docs/`: Documentation files and usage guides exposed as resources.
-- `robot/`: Robot-specific backend logic (e.g., describe.py).
+- `robot/`: Robot-specific backend logic (legacy, not used for tool logic).
 
 ---
 
@@ -32,8 +33,8 @@ Each tool must be defined as an object with the following properties:
   - `openWorldHint`: (optional) true if the tool interacts with external entities.
 
 ### 2. Tool Implementation
-- Implement the tool logic in the appropriate server file or a backend module (e.g., `robot/`).
-- Register the tool in the server (using the FastMCP decorator or by adding to the tools list in FastAPI).
+- Implement the tool logic in `tools.py` as a function taking `sim` as the first argument.
+- Register the tool in each server file (`coppelia_mcp.py`, `coppelia_fastmcp.py`) by importing the function from `tools.py` and registering it (e.g., with a lambda or decorator that injects `sim`).
 - Validate all input parameters against the defined `inputSchema`.
 - Ensure the tool is discoverable via the `tools/list` method and callable via `tools/call`.
 - Add or update the tool's entry in the server's tool list, following the MCP structure.
@@ -116,9 +117,9 @@ Each tool must be defined as an object with the following properties:
 ---
 
 ## Example: Adding a New Tool
-1. Implement the tool logic in `robot/` or the main server file.
-2. Add the tool definition to the server's tool list, following the MCP schema.
-3. Register the tool for discovery and invocation.
+1. Implement the tool logic in `tools.py` as a function taking `sim` as the first argument.
+2. Import and register the tool in both `coppelia_mcp.py` and `coppelia_fastmcp.py` (e.g., with a lambda or decorator that injects `sim`).
+3. Add the tool definition to the server's tool list, following the MCP schema.
 4. Add a prompt for the tool in `prompts.py` if user interaction is expected.
 5. (Optional) Add a resource (e.g., usage guide) in `docs/` and list it in `resources.py`.
 
