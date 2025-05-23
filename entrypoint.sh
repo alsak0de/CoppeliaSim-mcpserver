@@ -9,5 +9,8 @@ if [ "$1" -eq "$1" ] 2>/dev/null; then
     shift
 fi
 
-echo "Running: python coppelia_mcp.py --host 0.0.0.0 --port $PORT $@"
-exec python coppelia_mcp.py --host 0.0.0.0 --port "$PORT" "$@" 
+echo "Starting MCP server..."
+echo "Running: python -u coppelia_mcp.py --host 0.0.0.0 --port $PORT $@"
+echo "Attempting to connect to CoppeliaSim..."
+echo "Note: CoppeliaSim must be running and accessible at the specified host on port 23000"
+exec python -u coppelia_mcp.py --host 0.0.0.0 --port "$PORT" "$@" 

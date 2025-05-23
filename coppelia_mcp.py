@@ -17,12 +17,15 @@ print("🚀 Starting MCP server...")
 # Connect to CoppeliaSim
 # Precedence: COPPELIASIM_HOST env var > --coppeliaHost arg (if __main__) > '127.0.0.1'
 coppelia_host = os.environ.get("COPPELIASIM_HOST", "127.0.0.1")
+print(f"Attempting to connect to CoppeliaSim at {coppelia_host}:23000")
 try:
     client = RemoteAPIClient(coppelia_host, 23000)
+    print("RemoteAPIClient created, attempting to get 'sim' object...")
     sim = client.getObject('sim')
-    print(f"✅ Connected to CoppeliaSim at {coppelia_host}")
+    print(f"✅ Connected to CoppeliaSim at {coppelia_host}:23000")
 except Exception as e:
-    print(f"⚠️ Could not connect to CoppeliaSim at {coppelia_host}:", e)
+    print(f"⚠️ Could not connect to CoppeliaSim at {coppelia_host}:23000")
+    print(f"Error details: {str(e)}")
     sim = None
 
 # Define resources and prompts
