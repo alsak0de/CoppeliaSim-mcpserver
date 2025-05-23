@@ -105,5 +105,14 @@ python coppelia_mcp.py --host 0.0.0.0 --port 8000 --coppeliaHost <coppelia_host>
   - For the FastAPI-based server (`coppelia_mcp.py`), you need `uvicorn` (or another ASGI server) to actually serve HTTP/SSE endpoints, because FastAPI is just a framework and does not include a web server.
   - For the FastMCP-based server (`coppelia_fastmcp.py`), you only need `uvicorn` if you want to serve HTTP/SSE endpoints. If you run FastMCP in stdio mode (for agent/CLI integration), you do **not** need `uvicorn` or any web server, since all communication is over stdin/stdout.
 
+
+
+## Author and Credits
+
+Created and maintained by **Albert Sagarra**.  
+Community contributions are welcome and encouraged. Please refer to [`CONTRIBUTING.md`](./CONTRIBUTING.md) for details on how to participate.
+
 ## License
-MIT License 
+
+This project is licensed under the [MIT License](./LICENSE).  
+You are free to use, modify, and distribute this project under the terms of that license.
