@@ -13,29 +13,46 @@ server = FastMCP()
 
 print("🚀 Starting MCP server (fastmcp)...")
 
-# Connect to CoppeliaSim
-try:
-    client = RemoteAPIClient('127.0.0.1', 23000)
-    sim = client.getObject('sim')
-    print("✅ Connected to CoppeliaSim")
-except Exception as e:
-    print("⚠️ Could not connect to CoppeliaSim:", e)
-    sim = None
+client = None
+sim = None
+
+def connect_to_coppeliasim(host="127.0.0.1"):
+    global client, sim
+    print(f"Attempting to connect to CoppeliaSim at {host}:23000")
+    try:
+        client = RemoteAPIClient(host, 23000)
+        sim = client.getObject('sim')
+        print(f"✅ Connected to CoppeliaSim at {host}:23000")
+    except Exception as e:
+        print(f"⚠️ Could not connect to CoppeliaSim at {host}:23000")
+        print(f"Error details: {str(e)}")
+        sim = None
+
+# Call at import time for default host
+connect_to_coppeliasim()
 
 @server.tool()
 def rotate_joint_tool(joint_name: str, angle_deg: float):
+    if sim is None:
+        raise Exception("CoppeliaSim not connected (sim is None)")
     return rotate_joint(sim, joint_name, angle_deg)
 
 @server.tool()
 def describe_robot_tool():
+    if sim is None:
+        raise Exception("CoppeliaSim not connected (sim is None)")
     return describe_robot(sim)
 
 @server.tool()
 def list_joints_tool():
+    if sim is None:
+        raise Exception("CoppeliaSim not connected (sim is None)")
     return list_joints(sim)
 
 @server.tool()
 def describe_scene_tool():
+    if sim is None:
+        raise Exception("CoppeliaSim not connected (sim is None)")
     return describe_scene(sim)
 
 app = create_sse_app(server, message_path="/", sse_path="/sse")
@@ -66,13 +83,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # Connect to CoppeliaSim with the specified host
-    try:
-        client = RemoteAPIClient(args.coppeliaHost, 23000)
-        sim = client.getObject('sim')
-        print(f"✅ Connected to CoppeliaSim at {args.coppeliaHost}")
-    except Exception as e:
-        print(f"⚠️ Could not connect to CoppeliaSim at {args.coppeliaHost}:", e)
-        sim = None
+    connect_to_coppeliasim(args.coppeliaHost)
 
     import uvicorn
     uvicorn.run(app, host=args.host, port=args.port)

@@ -29,6 +29,21 @@ resources = [
     }
 ]
 
+@app.on_event("startup")
+def connect_to_coppeliasim():
+    global client, sim
+    coppelia_host = os.environ.get("COPPELIASIM_HOST", "127.0.0.1")
+    print(f"Attempting to connect to CoppeliaSim at {coppelia_host}:23000")
+    try:
+        client = RemoteAPIClient(coppelia_host, 23000)
+        print("RemoteAPIClient created, attempting to get 'sim' object...")
+        sim = client.getObject('sim')
+        print(f"✅ Connected to CoppeliaSim at {coppelia_host}:23000")
+    except Exception as e:
+        print(f"⚠️ Could not connect to CoppeliaSim at {coppelia_host}:23000")
+        print(f"Error details: {str(e)}")
+        sim = None
+
 # SSE endpoint
 @app.api_route("/sse", methods=["GET", "POST"])
 async def sse(request: Request):
@@ -161,6 +176,8 @@ async def sse(request: Request):
                 arguments = params.get("arguments", {})
 
                 try:
+                    if sim is None:
+                        raise Exception("CoppeliaSim not connected (sim is None)")
                     if tool_name == "rotate_joint":
                         joint_name = arguments.get("joint_name")
                         angle_deg = arguments.get("angle_deg")
@@ -444,6 +461,8 @@ async def jsonrpc_handler(request: Request):
             arguments = params.get("arguments", {})
 
             try:
+                if sim is None:
+                    raise Exception("CoppeliaSim not connected (sim is None)")
                 if tool_name == "rotate_joint":
                     joint_name = arguments.get("joint_name")
                     angle_deg = arguments.get("angle_deg")
@@ -606,19 +625,6 @@ if __name__ == "__main__":
     parser.add_argument("--port", type=int, default=8000, help="Port to bind the server to")
     parser.add_argument("--coppeliaHost", type=str, default=None, help="Host for CoppeliaSim ZeroMQ remote API")
     args = parser.parse_args()
-
-    # Connect to CoppeliaSim
-    coppelia_host = args.coppeliaHost or os.environ.get("COPPELIASIM_HOST", "127.0.0.1")
-    print(f"Attempting to connect to CoppeliaSim at {coppelia_host}:23000")
-    try:
-        client = RemoteAPIClient(coppelia_host, 23000)
-        print("RemoteAPIClient created, attempting to get 'sim' object...")
-        sim = client.getObject('sim')
-        print(f"✅ Connected to CoppeliaSim at {coppelia_host}:23000")
-    except Exception as e:
-        print(f"⚠️ Could not connect to CoppeliaSim at {coppelia_host}:23000")
-        print(f"Error details: {str(e)}")
-        sim = None
 
     uvicorn.run(app, host=args.host, port=args.port)
 
