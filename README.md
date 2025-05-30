@@ -40,6 +40,10 @@ pip install -r requirements.txt
 
 ### 2. Run the MCP server
 
+NOTE: MCP Servers typically run using stdio transport assuming the tools provider runs in the same machine as the MCP server and, very often, also the MCP host and client.
+Our project implements SSE transport and allows a complete distributed setup where CoppeliaSim, MCP Server and MCP Client can be running in different machines.
+
+
 #### Which server should I use?
 - **Option A (FastAPI-based, `coppelia_mcp.py`)** is recommended for most production deployments, especially if you want standard web server features, integration with web tooling, or custom endpoints.
 - **Option B (FastMCP-based, `coppelia_fastmcp.py`)** is ideal for agent/LLM-native workflows, stdio transport, or pure MCP/agent integration.
